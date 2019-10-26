@@ -1,0 +1,80 @@
+$theme-dark: #27181f;
+$theme-accent-dark: #38495b;
+$theme-accent: #689fac;
+$theme-light-dark: #c0d1ca;
+$theme-light: #ecf1e0;
+
+
+$white: rgba(255, 255, 255, 1);
+
+$fontMain: 'Quicksand', sans-serif;
+$textBreadcrumb: 9pt;
+$textTiny: 10pt;
+$textSmall: 12pt;
+$textMid: 14pt;
+$textBig: 18pt;
+$textH1: 45pt;
+$textH2: 25pt;
+
+$wrapWidth: 100vw;
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  min-width: 320px;
+
+  &.scrollOff {
+    overflow-y: hidden !important;
+  }
+
+}
+
+body {
+  //background: $whiteBg;
+  font-size: $textMid;
+  font-family: $fontMain;
+  //color: $greyMain;
+}
+
+a {
+  text-decoration: none !important;
+  background-color: transparent;
+
+  &:hover, &:active, &:focus {
+    outline: 0;
+  }
+}
+
+b, strong {
+  font-weight: 600;
+}
+
+
+%flex-center {
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+#siteWrapper {
+  margin: 0 auto;
+  overflow: hidden;
+  width: 100%;
+  background-size: auto 100%;
+}
+
+@include keyframes(elemShow) {
+  from {
+    @include opacity(0);
+    @include transform(translateY(50%));
+  }
+  to {
+    @include opacity(1);
+    @include transform(translateY(0%));
+  }
+}
+
+
+
+
