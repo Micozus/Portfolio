@@ -1,4 +1,7 @@
 $theme-dark: #27181f;
+$theme-dark-lighter: #452735;
+$theme-dark-accent: #983667;
+$theme-green-accent: #6dcb67;
 $theme-accent-dark: #38495b;
 $theme-accent: #689fac;
 $theme-light-dark: #c0d1ca;
@@ -9,12 +12,12 @@ $white: rgba(255, 255, 255, 1);
 
 $fontMain: 'Quicksand', sans-serif;
 $textBreadcrumb: 9pt;
-$textTiny: 10pt;
-$textSmall: 12pt;
-$textMid: 14pt;
-$textBig: 18pt;
-$textH1: 45pt;
-$textH2: 25pt;
+$textTiny: .6rem;
+$textSmall: .8rem;
+$textNormal: 14pt;
+$textBig: 1.2rem;
+$textH2: 2rem;
+$textH1: 6.5rem;
 
 $wrapWidth: 100vw;
 
@@ -24,6 +27,7 @@ html, body {
   overflow-y: hidden;
   min-width: 320px;
 
+
   &.scrollOff {
     overflow-y: hidden !important;
   }
@@ -31,14 +35,14 @@ html, body {
 }
 
 body {
-  //background: $whiteBg;
-  font-size: $textMid;
+  @include gradient($theme-dark, $theme-dark-lighter, vertical);
+  font-size: $textNormal;
   font-family: $fontMain;
-  //color: $greyMain;
+  color: $theme-accent-dark;
 }
 
 a {
-  text-decoration: none !important;
+  text-decoration: none;
   background-color: transparent;
 
   &:hover, &:active, &:focus {
@@ -60,8 +64,10 @@ b, strong {
 #siteWrapper {
   margin: 0 auto;
   overflow: hidden;
-  width: 100%;
+  @include box(100vw, 100vh);
   background-size: auto 100%;
+  display: flex;
+  @extend %flex-center;
 }
 
 @include keyframes(elemShow) {

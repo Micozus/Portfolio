@@ -1,0 +1,44 @@
+#middleMenuWraper {
+  height: 30vh;
+  display: flex;
+  @extend %flex-center;
+  flex-flow: row nowrap;
+
+  > div {
+    &:nth-child(2) {
+      display: flex;
+      @extend %flex-center;
+    }
+
+    #midBracesAnimation {
+      display: inline-block;
+      min-width: 150px;
+      min-height: 150px;
+
+      canvas {
+        margin: 10px;
+      }
+    }
+
+    span {
+      color: $theme-light;
+      @include no-select;
+
+      &.siteTitle {
+        font-size: $textH2;
+        margin: 0 25px;
+      }
+
+      &.braces {
+        display: inline-block;
+        position: relative;
+        font-size: $textH1;
+
+        &:last-child {
+          top: -20px;
+        }
+      }
+    }
+  }
+
+}
