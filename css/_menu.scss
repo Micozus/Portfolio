@@ -12,70 +12,152 @@
   }
 }
 
-#middleMenuWrapper {
-  height: 30vh;
-  display: flex;
-  @extend %flex-center;
-  flex-flow: row nowrap;
+nav {
+  position: relative;
+  top: -10vh;
 
-  > div {
-    &:nth-child(2) {
+  #middleCanvasWrapper {
+    height: 30vh;
+    display: flex;
+    @extend %flex-center;
+    flex-flow: row nowrap;
+    position: relative;
+
+    > div {
+      &:nth-child(2) {
+        display: flex;
+        @extend %flex-center;
+      }
+
+      #midBracesAnimation {
+        display: inline-block;
+        min-width: 150px;
+        min-height: 150px;
+        position: relative;
+
+        canvas {
+          margin: 10px;
+
+          &.animated {
+            @include animation(codeDisappear .5s ease-out 2s forwards);
+          }
+        }
+      }
+
+      span {
+        color: $theme-light;
+        @include no-select;
+
+        &.siteTitle {
+          font-size: $textH3;
+          margin: 0 25px;
+        }
+
+        &.braces {
+          display: inline-block;
+          position: relative;
+          font-size: $textH1;
+
+          @include transition(all .5s cubic-bezier(0.25, 0.1, 0.25, 1));
+
+          &.braces-show {
+            color: $theme-light !important;
+
+            @include transform(translateX(0%) !important);
+          }
+
+          &:first-child {
+            color: $theme-accent;
+
+            @include transform(translateX(200%));
+          }
+
+          &:last-child {
+            top: -20px;
+            color: $theme-dark-accent;
+
+            @include transform(translateX(-200%));
+
+          }
+        }
+      }
+    }
+
+  }
+
+  #middleMenuWrapper {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-content: center;
+    //margin-top: 20px;
+    position: relative;
+    left: -25px;
+
+    .menu {
       display: flex;
       @extend %flex-center;
-    }
+      position: relative;
 
-
-    #midBracesAnimation {
-      display: inline-block;
-      min-width: 150px;
-      min-height: 150px;
-
-      &.animated {
-        @include animation(codeDisappear .5s ease-out 2s forwards);
+      &::after {
+        content: '';
+        @include box(100px, 100px);
+        background: rgba(152, 54, 103, .5);
+        display: block;
+        position: absolute;
       }
 
-      canvas {
-        margin: 10px;
-      }
-    }
-
-    span {
-      color: $theme-light;
-      @include no-select;
-
-      &.siteTitle {
-        font-size: $textH2;
-        margin: 0 25px;
-      }
-
-      &.braces {
-        display: inline-block;
+      &__item:nth-child(2) {
         position: relative;
-        font-size: $textH1;
+        top: 5vh;
+      }
 
-        @include transition(all .5s cubic-bezier(0.25, 0.1, 0.25, 1));
 
-        &.braces-show {
-          color: $theme-light !important;
-
+      &__item, &__item i {
+        &:hover i {
+          @include opacity(1);
           @include transform(translateX(0%) !important);
         }
 
-        &:first-child {
+        &:hover span {
+          color: $theme-light;
+        }
+
+        &:hover span b {
           color: $theme-accent;
-
-          @include transform(translateX(200%));
         }
 
-        &:last-child {
-          top: -20px;
-          color: $theme-dark-accent;
-
-          @include transform(translateX(-200%));
-
+        button {
+          font-family: $fontMain;
+          font-size: $textH3;
+          cursor: pointer;
+          color: $theme-accent;
+          @include no-select;
+          background: none;
+          border: none;
+          outline: none;
         }
+
+
+      }
+
+      &__item i {
+        position: relative;
+        top: 3px;
+        color: $theme-light-dark;
+        @include opacity(0);
+        @include transform(translateX(100%));
+        @include transition(all .2s ease-in);
+      }
+
+      &__item span {
+        @include transition(all .2s ease-in);
+      }
+
+      &__item span b {
+        font-size: $textH3;
+        color: $theme-accent-dark;
       }
     }
   }
-
 }
