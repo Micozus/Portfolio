@@ -9,7 +9,6 @@ function randomColor(colors: string[]): string {
 const canvas = document.querySelector('canvas');
 const c = canvas.getContext('2d');
 
-
 canvas.width = 150;
 canvas.height = 150;
 
@@ -44,10 +43,12 @@ class CodeEle {
       this.rectHeight - this.cornerRadius);
   }
 
-  updateLine() {
-    this.rectY -= 1;
-    this.draw();
-  }
+  // TODO: When i finally find how to adjust line adding time and position...
+  //
+  // updateEle() {
+  //   this.rectY -= 1;
+  //   this.draw();
+  // }
 }
 
 class CodeLine {
@@ -93,7 +94,7 @@ class Canvas {
   }
 
   canvasInit() {
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 15; i++) {
       setTimeout(() => {
         this.drawNewLine();
       }, i * 100);
@@ -115,45 +116,54 @@ class Canvas {
 
   }
 
-  codelinesClear() {
-    let linesToDelete: number[] = [];
-    this.codeLines.forEach(line => {
-      if (line.codeEles[0].rectY < -20) {
-        linesToDelete.push(this.codeLines.indexOf(line));
-      }
-    });
-    let minLineToDelete = Math.min(...linesToDelete);
-    let maxLineToDelete = Math.max(...linesToDelete);
-    this.codeLines.splice(minLineToDelete, maxLineToDelete);
-  }
+  //TODO: When i finally find how to adjust line adding time and position...
+  //
+  // codelinesClear() {
+  //   let linesToDelete: number[] = [];
+  //   this.codeLines.forEach(line => {
+  //     if (line.codeEles[0].rectY < -20) {
+  //       linesToDelete.push(this.codeLines.indexOf(line));
+  //     }
+  //   });
+  //   let minLineToDelete = Math.min(...linesToDelete);
+  //   let maxLineToDelete = Math.max(...linesToDelete);
+  //   this.codeLines.splice(minLineToDelete, maxLineToDelete);
+  // }
 }
 
+//TODO: When i finally find how to adjust line adding time and position...
+//
+// function animate() {
+//
+//   let lines = canvasRows.codeLines;
+//   animation = requestAnimationFrame(animate);
+//   c.clearRect(0, 0, canvas.width, canvas.height);
+//   lines.forEach(line => {
+//     line.codeEles.forEach(ele => {
+//       ele.updateEle();
+//     });
+//   });
+//
+// }
+
+const canvasArea = document.querySelector('#midBracesAnimation');
+
+function linesIntervalToggling() {
+  canvasRows.canvasInit();
+  canvasArea.classList.add('animated');
+  setTimeout(() => {
+    canvasRows.codeLines.length = 0;
+    canvasRows.codeLinesTotalHeight = 0;
+    canvasRows.newCodeLineY = 0;
+    c.clearRect(0, 0, canvas.width, canvas.height);
+    canvasArea.classList.remove('animated');
+  }, 2500);
+}
 
 let canvasRows = new Canvas();
+setTimeout(() => linesIntervalToggling(), 700);
+setInterval(() => linesIntervalToggling(), 4000);
 
-function animate() {
-
-  let lines = canvasRows.codeLines;
-  requestAnimationFrame(animate);
-  c.clearRect(0, 0, canvas.width, canvas.height);
-  lines.forEach(line => {
-    line.codeEles.forEach(ele => {
-      ele.updateLine();
-    });
-  });
-
-}
-
-canvasRows.canvasInit();
-setTimeout(() => {
-  animate();
-  setInterval(() => {
-    if (canvasRows.codeLines.length < 70) canvasRows.drawNewLine();
-    canvasRows.codelinesClear();
-    console.log(canvasRows.codeLines[canvasRows.codeLines.length - 1].codeEles[0].rectY - canvasRows.codeLines[canvasRows.codeLines.length - 2].codeEles[0].rectY);
-  }, 10);
-}, 1500);
-setInterval(() => console.log(canvasRows.codeLines), 2000);
 
 
 
