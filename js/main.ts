@@ -147,8 +147,11 @@ class Canvas {
 // }
 
 const canvasArea = document.querySelector('#midBracesAnimation');
+const canvasBraces = document.querySelectorAll('.braces');
 
 function linesIntervalToggling() {
+
+  canvasBraces.forEach(braces => braces.classList.add('braces-show'));
   canvasRows.canvasInit();
   canvasArea.classList.add('animated');
   setTimeout(() => {
@@ -157,6 +160,7 @@ function linesIntervalToggling() {
     canvasRows.newCodeLineY = 0;
     c.clearRect(0, 0, canvas.width, canvas.height);
     canvasArea.classList.remove('animated');
+    canvasBraces.forEach(braces => braces.classList.remove('braces-show'));
   }, 2500);
 }
 

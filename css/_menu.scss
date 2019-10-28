@@ -5,42 +5,14 @@
   }
   80% {
     @include opacity(0);
-    @include transform(translateY(-100%));
+    @include transform(translateY(-50%));
   }
   100% {
     @include opacity(0);
-    @include transform(translateY(0%));
   }
 }
 
-@include keyframes(braceLeft) {
-  0% {
-    color: $theme-accent-dark;
-    @include opacity(0);
-    @include transform(translateX(200%));
-  }
-  100% {
-    color: $theme-light;
-    @include opacity(1);
-    @include transform(translateX(0%));
-  }
-}
-
-@include keyframes(braceRight) {
-  0% {
-    color: $theme-accent-dark;
-    @include opacity(0);
-    @include transform(translateX(-200%));
-  }
-  100% {
-    color: $theme-light;
-    @include opacity(1);
-    @include transform(translateX(0%));
-  }
-}
-
-
-#middleMenuWraper {
+#middleMenuWrapper {
   height: 30vh;
   display: flex;
   @extend %flex-center;
@@ -59,7 +31,7 @@
       min-height: 150px;
 
       &.animated {
-        @include animation(codeDisappear .3s ease-in 1.7s forwards);
+        @include animation(codeDisappear .5s ease-out 2s forwards);
       }
 
       canvas {
@@ -81,19 +53,26 @@
         position: relative;
         font-size: $textH1;
 
+        @include transition(all .5s cubic-bezier(0.25, 0.1, 0.25, 1));
+
+        &.braces-show {
+          color: $theme-light !important;
+
+          @include transform(translateX(0%) !important);
+        }
+
         &:first-child {
-          color: $theme-accent-dark;
-          @include opacity(0);
+          color: $theme-accent;
+
           @include transform(translateX(200%));
-          @include animation(braceLeft .3s ease-in .2s forwards);
         }
 
         &:last-child {
           top: -20px;
-          color: $theme-accent-dark;
-          @include opacity(0);
+          color: $theme-dark-accent;
+
           @include transform(translateX(-200%));
-          @include animation(braceRight .3s ease-in .2s forwards);
+
         }
       }
     }
