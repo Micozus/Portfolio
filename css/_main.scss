@@ -1,7 +1,10 @@
+$theme-darker: #21141a;
 $theme-dark: #27181f;
+$theme-dark-lighter-horizon: #341d28;
 $theme-dark-lighter: #452735;
 $theme-dark-accent: #983667;
 $theme-green-accent: #6dcb67;
+$theme-accent-darker: #181e25;
 $theme-accent-dark: #38495b;
 $theme-accent: #689fac;
 $theme-light-dark: #c0d1ca;
@@ -36,7 +39,7 @@ html, body {
 }
 
 body {
-  @include gradient($theme-dark, $theme-dark-lighter, vertical);
+  background: $theme-dark;
   font-size: $textNormal;
   font-family: $fontMain;
   color: $theme-accent-dark;
@@ -69,7 +72,21 @@ b, strong {
   background-size: auto 100%;
   display: flex;
   @extend %flex-center;
+
+  .bgHorizon {
+    display: flex;
+    flex-flow: column wrap;
+    position: absolute;
+    @include box(100vw, 100vh);
+
+    div {
+      height: 50vh;
+      @include gradient($theme-dark-lighter, $theme-dark-lighter-horizon, vertical);
+    }
+
+  }
 }
+
 
 @include keyframes(elemShow) {
   from {

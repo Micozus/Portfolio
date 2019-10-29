@@ -166,8 +166,25 @@ class Canvas {
 // }
 
 let canvasRows = new Canvas();
-setTimeout(() => canvasRows.linesIntervalToggling(), 700);
-setInterval(() => canvasRows.linesIntervalToggling(), 4000);
+let canvasInterval: number;
+
+function startCanvas() {
+  canvasInterval = setInterval(() => canvasRows.linesIntervalToggling(), 4000);
+}
+
+function stopCanvas() {
+  clearInterval(canvasInterval);
+}
+
+window.onload = () => {
+  setTimeout(() => canvasRows.linesIntervalToggling(), 700);
+  startCanvas();
+};
+
+
+
+
+
 
 
 

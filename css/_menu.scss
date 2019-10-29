@@ -14,6 +14,7 @@
 
 nav {
   position: relative;
+  z-index: 3;
   top: -10vh;
 
   #middleCanvasWrapper {
@@ -94,70 +95,84 @@ nav {
     position: relative;
     left: -25px;
 
-    .menu {
-      display: flex;
-      @extend %flex-center;
+
+    .item:nth-child(2) {
       position: relative;
+      top: 5vh;
+    }
+
+    .item {
+      position: relative;
+
+      &:hover:after {
+        background: rgba(152, 54, 103, .3);
+      }
 
       &::after {
         content: '';
-        @include box(100px, 100px);
-        background: rgba(152, 54, 103, .5);
+        @include box(100%, 100%);
+        background: rgba(39, 24, 31, .2);
+        @include position(120%, 10%);
         display: block;
         position: absolute;
-      }
-
-      &__item:nth-child(2) {
-        position: relative;
-        top: 5vh;
-      }
-
-
-      &__item, &__item i {
-        &:hover i {
-          @include opacity(1);
-          @include transform(translateX(0%) !important);
-        }
-
-        &:hover span {
-          color: $theme-light;
-        }
-
-        &:hover span b {
-          color: $theme-accent;
-        }
-
-        button {
-          font-family: $fontMain;
-          font-size: $textH3;
-          cursor: pointer;
-          color: $theme-accent;
-          @include no-select;
-          background: none;
-          border: none;
-          outline: none;
-        }
-
-
-      }
-
-      &__item i {
-        position: relative;
-        top: 3px;
-        color: $theme-light-dark;
-        @include opacity(0);
-        @include transform(translateX(100%));
+        border-radius: 50%;
+        @include transform(rotateX(-80deg) translateY(-220%) rotateY(-1deg));
+        z-index: 1;
         @include transition(all .2s ease-in);
-      }
-
-      &__item span {
-        @include transition(all .2s ease-in);
-      }
-
-      &__item span b {
-        font-size: $textH3;
-        color: $theme-accent-dark;
+        cursor: unset;
       }
     }
+
+    .item, &.item i {
+
+
+      &:hover i {
+        @include opacity(1);
+        @include transform(translateX(0%) !important);
+      }
+
+      &:hover span {
+        color: $theme-light;
+      }
+
+      &:hover span b {
+        color: $theme-accent;
+      }
+
+      button {
+        position: relative;
+        z-index: 3;
+        font-family: $fontMain;
+        font-size: $textH3;
+        cursor: pointer;
+        color: $theme-accent;
+        @include no-select;
+        background: none;
+        border: none;
+        outline: none;
+      }
+    }
+
+    .item i {
+      position: relative;
+      font-size: $textH2 - 0.5rem;
+      top: 8px;
+      color: $theme-light-dark;
+      @include opacity(0);
+      @include transform(translateX(100%));
+      @include transition(all .2s ease-in);
+    }
+
+    .item span {
+      @include transition(all .2s ease-in);
+    }
+
+    .item span b {
+      font-size: $textH2 - 0.5rem;
+      color: $theme-accent-dark;
+      position: relative;
+      top: 2px;
+    }
+
   }
 }

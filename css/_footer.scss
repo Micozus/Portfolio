@@ -1,0 +1,29 @@
+footer {
+  position: fixed;
+  z-index: 999;
+  bottom: 0;
+
+  #footerContactCta {
+    display: flex;
+    flex-flow: row nowrap;
+    margin: 0 auto;
+
+    .item {
+      margin: 0 20px;
+      padding: 20px;
+
+      font-size: $textBig;
+      @include box-shadow(0, 0, 30px, $theme-dark);
+      @include no-select;
+      @include gradient($theme-dark, $theme-dark-lighter-horizon, vertical);
+      color: $theme-light;
+      cursor: pointer;
+      @include transition(all .2s ease-in);
+
+      &:hover {
+        @include gradient($theme-darker, $theme-dark-lighter-horizon, vertical);
+        @include box-shadow(0, 0, 30px, $theme-darker);
+      }
+    }
+  }
+}
