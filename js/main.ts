@@ -1,7 +1,10 @@
 // const canvasArea = document.querySelector('#midBracesAnimation');
 const canvasBraces = document.querySelectorAll('.braces');
 const canvas = document.querySelector('canvas');
+const loader = document.querySelector('#midBracesAnimation .loader');
 const c = canvas.getContext('2d');
+const hidden = document.querySelectorAll('.hidden');
+const sectionsArea = document.querySelector('section');
 
 canvas.width = 150;
 canvas.height = 150;
@@ -148,7 +151,7 @@ class Canvas {
 //   let maxLineToDelete = Math.max(...linesToDelete);
 //   this.codeLines.splice(minLineToDelete, maxLineToDelete);
 // }
-}
+
 
 //TODO: When i finally find how to adjust line adding time and position...
 //
@@ -164,9 +167,11 @@ class Canvas {
 //   });
 //
 // }
+}
 
 let canvasRows = new Canvas();
 let canvasInterval: number;
+
 
 function startCanvas() {
   canvasInterval = setInterval(() => canvasRows.linesIntervalToggling(), 4000);
@@ -176,8 +181,32 @@ function stopCanvas() {
   clearInterval(canvasInterval);
 }
 
+function mainMenuInit() {
+  loader.classList.add('hidden');
+  setTimeout(() => {
+    hidden.forEach(ele => ele.classList.remove('hidden'));
+    canvasBraces.forEach(braces => braces.classList.remove('braces-show'));
+    setTimeout(() => canvasRows.linesIntervalToggling(), 400);
+  }, 600);
+}
+
+function onChangeView(section: string) {
+  stopCanvas();
+  hidden[1].classList.add('menu-hide');
+  hidden.forEach(ele => {
+    if (!ele.classList.contains('item')) ele.classList.add('hidden')
+  });
+  setTimeout(() => sectionsArea.classList.remove('unselected'), 600);
+}
+
+function onBackToMenu() {
+  hidden[1].classList.remove('menu-hide');
+  mainMenuInit();
+  startCanvas();
+}
+
 window.onload = () => {
-  setTimeout(() => canvasRows.linesIntervalToggling(), 700);
+  mainMenuInit();
   startCanvas();
 };
 

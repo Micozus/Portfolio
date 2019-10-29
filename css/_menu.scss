@@ -20,9 +20,19 @@ nav {
   #middleCanvasWrapper {
     height: 30vh;
     display: flex;
-    @extend %flex-center;
     flex-flow: row nowrap;
     position: relative;
+    @extend %flex-center;
+    @include transition(all .4s ease-out);
+
+    &.menu-hide {
+      @include transform(translateY(-50%) !important);
+      @include opacity(0);
+    }
+
+    &.hidden {
+      @include transform(translateY(35%));
+    }
 
     > div {
       &:nth-child(2) {
@@ -34,10 +44,14 @@ nav {
         display: inline-block;
         min-width: 150px;
         min-height: 150px;
+        max-width: 180px;
         position: relative;
 
         canvas {
+          position: relative;
+          top: -110px;
           margin: 10px;
+
 
           &.animated {
             @include animation(codeDisappear .5s ease-out 2s forwards);
@@ -58,25 +72,21 @@ nav {
           display: inline-block;
           position: relative;
           font-size: $textH1;
-
           @include transition(all .5s cubic-bezier(0.25, 0.1, 0.25, 1));
 
           &.braces-show {
             color: $theme-light !important;
-
             @include transform(translateX(0%) !important);
           }
 
           &:first-child {
             color: $theme-accent;
-
             @include transform(translateX(200%));
           }
 
           &:last-child {
             top: -20px;
             color: $theme-dark-accent;
-
             @include transform(translateX(-200%));
 
           }
@@ -91,10 +101,8 @@ nav {
     flex-flow: row wrap;
     justify-content: space-between;
     align-content: center;
-    //margin-top: 20px;
     position: relative;
     left: -25px;
-
 
     .item:nth-child(2) {
       position: relative;
@@ -104,27 +112,10 @@ nav {
     .item {
       position: relative;
 
-      &:hover:after {
-        background: rgba(152, 54, 103, .3);
-      }
 
-      &::after {
-        content: '';
-        @include box(100%, 100%);
-        background: rgba(39, 24, 31, .2);
-        @include position(120%, 10%);
-        display: block;
-        position: absolute;
-        border-radius: 50%;
-        @include transform(rotateX(-80deg) translateY(-220%) rotateY(-1deg));
-        z-index: 1;
-        @include transition(all .2s ease-in);
-        cursor: unset;
-      }
     }
 
     .item, &.item i {
-
 
       &:hover i {
         @include opacity(1);
@@ -146,10 +137,58 @@ nav {
         font-size: $textH3;
         cursor: pointer;
         color: $theme-accent;
-        @include no-select;
         background: none;
         border: none;
         outline: none;
+        @include no-select;
+        @include transition(all .3s ease-out);
+
+        &.hidden {
+          @include opacity(0);
+          @include transform(translateY(-50%));
+
+          &::after {
+            @include transform(rotateX(-80deg) translateY(-220%) rotateY(-1deg) scale(0));
+          }
+        }
+
+        &:hover:after {
+          background: rgba(152, 54, 103, .3);
+        }
+
+        &::after {
+          content: '';
+          background: rgba(39, 24, 31, .2);
+          display: block;
+          position: absolute;
+          border-radius: 50%;
+          z-index: 1;
+          pointer-events: none;
+          @include box(100%, 100%);
+          @include position(120%, 10%);
+          @include transform(rotateX(-80deg) translateY(-220%) rotateY(-1deg));
+          @include transition(all .3s ease-in);
+        }
+
+        &:focus {
+          i {
+            @include opacity(1);
+            @include transform(translateX(0%) !important);
+          }
+
+          span {
+            color: $theme-light;
+          }
+
+          span b {
+            color: $theme-accent;
+          }
+
+          &::after {
+            background: rgba(152, 54, 103, .3);
+          }
+        }
+
       }
     }
 

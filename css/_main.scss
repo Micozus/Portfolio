@@ -65,11 +65,10 @@ b, strong {
   align-content: center;
 }
 
-#siteWrapper {
+#mainScreenWrapper {
   margin: 0 auto;
   overflow: hidden;
   @include box(100vw, 100vh);
-  background-size: auto 100%;
   display: flex;
   @extend %flex-center;
 
@@ -78,12 +77,68 @@ b, strong {
     flex-flow: column wrap;
     position: absolute;
     @include box(100vw, 100vh);
+    @include transition(all .3s ease);
+
+    &.hidden {
+      @include opacity(0);
+    }
 
     div {
       height: 50vh;
       @include gradient($theme-dark-lighter, $theme-dark-lighter-horizon, vertical);
     }
 
+  }
+}
+
+.loader,
+.loader:after {
+  border-radius: 50%;
+  width: 10em;
+  height: 10em;
+}
+
+.loader {
+  margin: 60px auto;
+  font-size: $textTiny;
+  position: relative;
+  top: 80px;
+  z-index: 4;
+  text-indent: -9999em;
+  border-top: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-right: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-left: 1.1em solid $theme-accent;
+  @include transform(translateZ(0));
+  @include animation(load8 1.1s infinite linear);
+  @include transition(all .3s ease);
+
+  &.hidden {
+    @include opacity(0);
+    @include transform(translateZ(0));
+  }
+
+}
+
+@-webkit-keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 

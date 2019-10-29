@@ -9,20 +9,34 @@ footer {
     margin: 0 auto;
 
     .item {
+      position: relative;
+      top: 20px;
       margin: 0 20px;
       padding: 20px;
-
+      height: 50px;
       font-size: $textBig;
+      color: $theme-light;
+      cursor: pointer;
       @include box-shadow(0, 0, 30px, $theme-dark);
       @include no-select;
       @include gradient($theme-dark, $theme-dark-lighter-horizon, vertical);
-      color: $theme-light;
-      cursor: pointer;
-      @include transition(all .2s ease-in);
+      @include transition(all .3s ease-in-out);
+      @include transform(translateY(0%));
+
+      &.hidden {
+        @include transform(translateY(100%));
+        @include opacity(0);
+      }
 
       &:hover {
         @include gradient($theme-darker, $theme-dark-lighter-horizon, vertical);
         @include box-shadow(0, 0, 30px, $theme-darker);
+        @include transform(translateY(-20%));
+      }
+
+      &:active, &:focus {
+        @include gradient($theme-dark-accent, $theme-dark-lighter-horizon, vertical);
+        @include transform(translateY(-20%));
       }
     }
   }

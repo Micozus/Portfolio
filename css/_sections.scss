@@ -1,0 +1,54 @@
+section {
+  position: absolute;
+  margin: 0 auto;
+  overflow: hidden;
+  @include box(100vw, 100vh);
+
+  &.unselected {
+    pointer-events: none;
+    @include opacity(0);
+
+    header {
+      min-height: 0;
+    }
+  }
+
+  header {
+    background: $white;
+    @include box(100%, auto);
+    display: flex;
+    @extend %flex-center;
+    min-height: 70px;
+    @include transition(all .4s ease-in);
+
+    span {
+      color: $theme-dark;
+      @include no-select;
+
+      &.siteTitle {
+        font-size: $textH3;
+        margin: 0 25px;
+      }
+
+      &.braces {
+        display: inline-block;
+        position: relative;
+        font-size: $textH2;
+        @include transition(all .5s cubic-bezier(0.25, 0.1, 0.25, 1));
+
+        &:first-child {
+          color: $theme-accent;
+          @include transform(translateX(200%));
+        }
+
+        &:last-child {
+          top: -20px;
+          color: $theme-dark-accent;
+          @include transform(translateX(-200%));
+
+        }
+      }
+    }
+
+  }
+}

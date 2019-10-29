@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="pl">
 
 <head>
   <meta charset="utf-8">
@@ -22,24 +22,26 @@
 <![endif]-->
 
 
-<div id="siteWrapper">
-  <div class="bgHorizon">
+<div id="mainScreenWrapper">
+
+  <div class="bgHorizon hidden">
     <div></div>
     <div></div>
   </div>
   <nav>
-    <div id="middleCanvasWrapper">
+    <div id="middleCanvasWrapper" class="hidden">
       <div>
         <span class="siteTitle">
           paweł_Mikos
         </span>
       </div>
       <div>
-        <span class="braces">{</span>
+        <span class="braces braces-show">{</span>
         <div id="midBracesAnimation">
+          <div class="loader"></div>
           <canvas></canvas>
         </div>
-        <span class="braces">}</span>
+        <span class="braces braces-show">}</span>
       </div>
       <div>
         <span class="siteTitle">
@@ -49,24 +51,41 @@
     </div>
     <div id="middleMenuWrapper">
       <div class="item">
-        <button><i class="material-icons">mood</i> <span><b>/</b> O mnie</span></button>
-
+        <button class="hidden" onclick="onChangeView('about')" tabindex="1"><i class="material-icons">mood</i>
+          <span><b>/</b> O mnie</span></button>
       </div>
       <div class="item">
-        <button><i class="material-icons">star_border</i> <span><b>/</b> Umiejętności</span></button>
+        <button class="hidden" onclick="onChangeView('skills')" tabindex="2"><i class="material-icons">star_border</i>
+          <span><b>/</b> Umiejętności</span>
+        </button>
       </div>
       <div class="item">
-        <button><i class="material-icons">done_all</i> <span><b>/</b> Realizacje</span></button>
+        <button class="hidden" onclick="onChangeView('portfolio')" tabindex="3"><i class="material-icons">done_all</i>
+          <span><b>/</b> Realizacje</span>
+        </button>
       </div>
     </div>
   </nav>
+  <section class="unselected">
+    <header>
+      <span class="braces">}</span>
+      <span class="braces">{</span>
+      <span class="siteTitle">
+          paweł_Mikos
+        </span>
+      <span class="siteTitle">
+          developer-Portfolio
+        </span>
+    </header>
+
+  </section>
   <footer>
     <div id="footerContactCta">
-      <div class="item"><i class="material-icons">
+      <div tabindex="4" class="item hidden"><i class="material-icons">
         assignment_ind
       </i> Zobacz CV
       </div>
-      <div class="item"><i class="material-icons">
+      <div tabindex="5" class="item hidden"><i class="material-icons">
         question_answer
       </i> Skontaktuj się
       </div>
