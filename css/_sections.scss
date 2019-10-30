@@ -1,25 +1,37 @@
-section {
+main {
   position: absolute;
   margin: 0 auto;
   overflow: hidden;
+  pointer-events: all;
   @include box(100vw, 100vh);
+  @include transition(all .3s ease);
 
   &.unselected {
     pointer-events: none;
     @include opacity(0);
 
     header {
-      min-height: 0;
+      max-height: 0;
+    }
+
+    #backToMainMenuCta {
+      @include transform(translateY(-70px));
+      @include opacity(0);
     }
   }
 
   header {
-    background: $white;
-    @include box(100%, auto);
     display: flex;
+    max-height: 90px;
+    padding: 5px 0;
+    overflow: hidden;
+    position: fixed;
+    z-index: 10000;
+    @include position(0, 0);
+    @include gradient($white, $theme-light-dark, vertical);
+    @include box(100%, auto);
     @extend %flex-center;
-    min-height: 70px;
-    @include transition(all .4s ease-in);
+    @include transition(all .3s ease);
 
     span {
       color: $theme-dark;
@@ -34,21 +46,155 @@ section {
         display: inline-block;
         position: relative;
         font-size: $textH2;
-        @include transition(all .5s cubic-bezier(0.25, 0.1, 0.25, 1));
 
-        &:first-child {
+        &:first-of-type {
           color: $theme-accent;
-          @include transform(translateX(200%));
         }
 
-        &:last-child {
-          top: -20px;
+        &:last-of-type {
+          top: -10px;
           color: $theme-dark-accent;
-          @include transform(translateX(-200%));
 
         }
       }
     }
+  }
 
+  section {
+    margin-top: 100px;
+    @include gradient($theme-dark, $theme-dark-lighter-horizon, vertical);
+    @include box(100vw, 100vh);
+    @include transition(all .3s ease);
+
+    #sectionAreaWrapper {
+      margin: 0 auto;
+      max-width: 1024px;
+
+      .sectionEntry {
+        display: flex;
+        flex-flow: column wrap;
+
+        &.about {
+          .entryImage {
+            background: url('../assets/sections/about_pic.jpg') no-repeat 50% 50% / cover;
+          }
+        }
+
+        > div {
+          width: 100%;
+          margin: 10px;
+        }
+
+        .entryHighlight {
+          display: flex;
+          flex-flow: row nowrap;
+          @extend %flex-center;
+
+          > div {
+            position: relative;
+            border-radius: 5px;
+            @include box-shadow(0, 0, 30px, $theme-dark);
+          }
+
+          .entryImage {
+            left: 50px;
+            @include box(40%, 200px);
+
+            &::before {
+              background: rgba(255, 255, 255, .5);
+              content: '';
+              position: absolute;
+              z-index: 4;
+              border-radius: 5px;
+              @include box(100%, 30%);
+              @include position(60%, 70%);
+            }
+
+            &::after {
+              content: '';
+              position: absolute;
+              @include box(100%, 100%);
+              @include gradient($theme-dark-lighter, $theme-dark-accent, vertical);
+              @include opacity(.6);
+              @include position(0, 0);
+              border-radius: 5px;
+            }
+          }
+
+          .entryTitle {
+            background: $theme-dark-lighter-horizon;
+            width: 60%;
+            padding: 20px;
+            color: $theme-light;
+            font-size: $textH3;
+            right: 50px;
+            z-index: 5;
+
+            span {
+              color: $theme-accent;
+            }
+
+
+          }
+        }
+      }
+    }
+  }
+
+  #backToMainMenuCta {
+    position: relative;
+    z-index: 9999;
+    margin: 0 auto;
+    color: $theme-light;
+    display: flex;
+    cursor: pointer;
+    overflow: hidden;
+    @extend %flex-center;
+    @include box-shadow(0, 0, 30px, $theme-dark);
+    @include no-select;
+    @include gradient($theme-dark, $theme-dark-lighter-horizon, vertical);
+    @include transition(all .5s ease-out);
+    @include box(50px, 50px);
+    @include transform(translateY(70px));
+
+    &:hover {
+      @include gradient($theme-darker, $theme-dark-lighter-horizon, vertical);
+      @include box-shadow(0, 0, 30px, $theme-darker);
+    }
+
+    &:active, &:focus {
+      @include gradient($theme-dark-accent, $theme-dark-lighter-horizon, vertical);
+    }
+
+    &:before {
+      content: '';
+      background-color: $theme-dark-accent;
+      border-radius: 50%;
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      @include animation(pulse 2s ease-out 0s infinite);
+      @include transform(scale(0.001, 0.001));
+    }
+
+    @include keyframes (pulse) {
+      50% {
+        @include transform(scale(1.5, 1.5));
+        @include opacity(0);
+        background-color: $theme-dark-accent;
+      }
+      99% {
+        @include transform(scale(0.001, 0.001));
+        @include opacity(0);
+      }
+      100% {
+        @include transform(scale(0.001, 0.001));
+        @include opacity(1);
+        background-color: $theme-dark-accent;
+      }
+    }
   }
 }

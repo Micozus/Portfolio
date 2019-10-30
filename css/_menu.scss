@@ -16,12 +16,18 @@ nav {
   position: relative;
   z-index: 3;
   top: -10vh;
+  pointer-events: all;
+
+  &.contentSelected {
+    pointer-events: none;
+  }
 
   #middleCanvasWrapper {
     height: 30vh;
     display: flex;
     flex-flow: row nowrap;
     position: relative;
+    @include opacity(1);
     @extend %flex-center;
     @include transition(all .4s ease-out);
 

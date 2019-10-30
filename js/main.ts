@@ -4,7 +4,8 @@ const canvas = document.querySelector('canvas');
 const loader = document.querySelector('#midBracesAnimation .loader');
 const c = canvas.getContext('2d');
 const hidden = document.querySelectorAll('.hidden');
-const sectionsArea = document.querySelector('section');
+const sectionsArea = document.querySelector('main');
+const navArea = document.querySelector('nav');
 
 canvas.width = 150;
 canvas.height = 150;
@@ -172,7 +173,6 @@ class Canvas {
 let canvasRows = new Canvas();
 let canvasInterval: number;
 
-
 function startCanvas() {
   canvasInterval = setInterval(() => canvasRows.linesIntervalToggling(), 4000);
 }
@@ -182,6 +182,7 @@ function stopCanvas() {
 }
 
 function mainMenuInit() {
+  navArea.classList.remove('contentSelected');
   loader.classList.add('hidden');
   setTimeout(() => {
     hidden.forEach(ele => ele.classList.remove('hidden'));
@@ -192,6 +193,7 @@ function mainMenuInit() {
 
 function onChangeView(section: string) {
   stopCanvas();
+  navArea.classList.add('contentSelected');
   hidden[1].classList.add('menu-hide');
   hidden.forEach(ele => {
     if (!ele.classList.contains('item')) ele.classList.add('hidden')
@@ -199,8 +201,14 @@ function onChangeView(section: string) {
   setTimeout(() => sectionsArea.classList.remove('unselected'), 600);
 }
 
-function onBackToMenu() {
+function hideHeader() {
   hidden[1].classList.remove('menu-hide');
+  sectionsArea.classList.add('unselected');
+}
+
+function onBackToMenu() {
+  hideHeader();
+  stopCanvas();
   mainMenuInit();
   startCanvas();
 }
