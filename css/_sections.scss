@@ -16,7 +16,7 @@ main {
   }
 
   header {
-    max-height: 90px;
+    max-height: 10vh;
     padding: 5px 0;
     position: fixed;
     z-index: 9999;
@@ -62,10 +62,12 @@ main {
   }
 
   section {
-    margin-top: 100px;
+    margin-top: 10vh;
+    overflow-y: auto;
     @include gradient($theme-dark, $theme-dark-lighter-horizon, vertical);
-    @include box(100vw, 100vh);
+    @include box(100vw, 90vh);
     @include transition(all .3s ease);
+
 
     #sectionAreaWrapper {
       position: relative;
@@ -78,6 +80,7 @@ main {
         @include transition(all .3s ease);
         @include transform(translateX(-50%));
         @include opacity(0);
+        margin-bottom: 100px;
 
         &.hidden {
           display: none;
@@ -161,8 +164,8 @@ main {
         }
 
         .entryContent {
-          margin-top: 50px;
-          width: 100%;
+          width: 90%;
+          margin: 50px auto 0 auto;
 
           .entryName {
             font-size: $textH3;
@@ -170,6 +173,23 @@ main {
             padding: 20px;
             position: relative;
             @include no-select;
+
+            .outsideLinks {
+              position: absolute;
+              right: 0;
+              top: 25%;
+
+              img {
+                @include box(40px, 40px);
+                @include transition(all .3s ease);
+                @include filter(invert(50%) brightness(1));
+
+                &:hover {
+                  @include filter(invert(50%) brightness(1.7));
+                }
+              }
+
+            }
 
             &::after {
               content: '';
@@ -182,6 +202,19 @@ main {
 
             span {
               color: $theme-accent;
+            }
+          }
+
+          .actualContent {
+            padding: 20px 0;
+            font-size: $textBig;
+            color: $theme-light;
+
+            p {
+              line-height: 1.3;
+              text-align: justify;
+              margin-bottom: 10px;
+              hyphens: auto;
             }
           }
         }
@@ -197,7 +230,7 @@ main {
     cursor: pointer;
     overflow: hidden;
     border-radius: 10px;
-    right: 0%;
+    right: 0;
     @extend %flex-center;
     @include box-shadow(0, 0, 50px, $theme-darker);
     @include no-select;

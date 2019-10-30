@@ -217,6 +217,10 @@ function onSelectView(section: string) {
   }, 800);
 }
 
+function onSwitchView() {
+
+}
+
 function hideHeaderAndSectionContent() {
   hidden[1].classList.remove('menu-hide');
   sectionsArea.classList.add('unselected');

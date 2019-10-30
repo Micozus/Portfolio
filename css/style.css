@@ -492,7 +492,7 @@ main.unselected header {
   max-height: 0;
 }
 main header {
-  max-height: 90px;
+  max-height: 10vh;
   padding: 5px 0;
   position: fixed;
   z-index: 9999;
@@ -537,12 +537,13 @@ main header span.braces:last-of-type {
   color: #983667;
 }
 main section {
-  margin-top: 100px;
+  margin-top: 10vh;
+  overflow-y: auto;
   background: #27181f;
   background: -webkit-linear-gradient(top, #27181f, #341d28);
   background: linear-gradient(to bottom, #27181f, #341d28);
   width: 100vw;
-  height: 100vh;
+  height: 90vh;
   transition: all 0.3s ease;
   -webkit-transition: all 0.3s ease;
 }
@@ -561,6 +562,7 @@ main section #sectionAreaWrapper .sectionEntry {
   transform: translateX(-50%);
   opacity: 0;
   filter: alpha(opacity=0);
+  margin-bottom: 100px;
 }
 main section #sectionAreaWrapper .sectionEntry.hidden {
   display: none;
@@ -643,8 +645,8 @@ main section #sectionAreaWrapper .sectionEntry .entryHighlight .entryTitle span 
   color: #689fac;
 }
 main section #sectionAreaWrapper .sectionEntry .entryContent {
-  margin-top: 50px;
-  width: 100%;
+  width: 90%;
+  margin: 50px auto 0 auto;
 }
 main section #sectionAreaWrapper .sectionEntry .entryContent .entryName {
   font-size: 1.8rem;
@@ -656,6 +658,23 @@ main section #sectionAreaWrapper .sectionEntry .entryContent .entryName {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+main section #sectionAreaWrapper .sectionEntry .entryContent .entryName .outsideLinks {
+  position: absolute;
+  right: 0;
+  top: 25%;
+}
+main section #sectionAreaWrapper .sectionEntry .entryContent .entryName .outsideLinks img {
+  width: 40px;
+  height: 40px;
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  filter: invert(50%) brightness(1);
+  -ms-filter: invert(50%) brightness(1);
+}
+main section #sectionAreaWrapper .sectionEntry .entryContent .entryName .outsideLinks img:hover {
+  filter: invert(50%) brightness(1.7);
+  -ms-filter: invert(50%) brightness(1.7);
 }
 main section #sectionAreaWrapper .sectionEntry .entryContent .entryName::after {
   content: "";
@@ -672,6 +691,17 @@ main section #sectionAreaWrapper .sectionEntry .entryContent .entryName::after {
 main section #sectionAreaWrapper .sectionEntry .entryContent .entryName span {
   color: #689fac;
 }
+main section #sectionAreaWrapper .sectionEntry .entryContent .actualContent {
+  padding: 20px 0;
+  font-size: 1.4rem;
+  color: #ecf1e0;
+}
+main section #sectionAreaWrapper .sectionEntry .entryContent .actualContent p {
+  line-height: 1.3;
+  text-align: justify;
+  margin-bottom: 10px;
+  hyphens: auto;
+}
 main #backToMainMenuCta {
   position: absolute;
   z-index: 10000;
@@ -680,7 +710,7 @@ main #backToMainMenuCta {
   cursor: pointer;
   overflow: hidden;
   border-radius: 10px;
-  right: 0%;
+  right: 0;
   -webkit-box-shadow: 0 0 50px #21141a;
   -moz-box-shadow: 0 0 50px #21141a;
   box-shadow: 0 0 50px #21141a;
