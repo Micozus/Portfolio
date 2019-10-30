@@ -19,7 +19,7 @@ footer {
       cursor: pointer;
       @include box-shadow(0, 0, 30px, $theme-dark);
       @include no-select;
-      @include gradient($theme-dark, $theme-dark-lighter-horizon, vertical);
+      @include gradient($theme-dark, $theme-purple-dark, vertical);
       @include transition(all .3s ease-in-out);
       @include transform(translateY(0%));
 
@@ -29,13 +29,13 @@ footer {
       }
 
       &:hover {
-        @include gradient($theme-darker, $theme-dark-lighter-horizon, vertical);
+        @include gradient($theme-darker, $theme-purple-dark, vertical);
         @include box-shadow(0, 0, 30px, $theme-darker);
         @include transform(translateY(-20%));
       }
 
       &:active, &:focus {
-        @include gradient($theme-dark-accent, $theme-dark-lighter-horizon, vertical);
+        @include gradient($theme-purple-accent, $theme-purple-dark, vertical);
         @include transform(translateY(-20%));
       }
     }

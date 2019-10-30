@@ -21,9 +21,9 @@ main {
     position: fixed;
     z-index: 9999;
     @include position(0, 0);
-    @include gradient($white, $theme-light-dark, vertical);
+    @include gradient($theme-purple, $theme-purple-dark, vertical);
     @include box(100%, auto);
-
+    @include box-shadow(0, 0, 30px, $theme-gray-darker);
     @include transition(all .3s ease);
 
     .headerWrapper {
@@ -35,7 +35,7 @@ main {
     }
 
     span {
-      color: $theme-dark;
+      color: $theme-light;
       @include no-select;
 
       &.siteTitle {
@@ -49,13 +49,12 @@ main {
         font-size: $textH2;
 
         &:first-of-type {
-          color: $theme-accent;
+          color: $theme-blue-lighter;
         }
 
         &:last-of-type {
           top: -10px;
-          color: $theme-dark-accent;
-
+          color: $theme-purple-accent;
         }
       }
     }
@@ -64,9 +63,56 @@ main {
   section {
     margin-top: 10vh;
     overflow-y: auto;
-    @include gradient($theme-dark, $theme-dark-lighter-horizon, vertical);
+    position: relative;
+    overflow-x: hidden;
+    @include gradient($theme-dark, $theme-purple-dark, vertical);
     @include box(100vw, 90vh);
     @include transition(all .3s ease);
+
+    .sectionNavigate {
+      position: fixed;
+      z-index: 10000;
+      color: $theme-light;
+      display: flex;
+      cursor: pointer;
+      overflow: hidden;
+      border-radius: 10px;
+      top: 45%;
+
+      @extend %flex-center;
+      @include box-shadow(0, 0, 30px, $theme-gray-darker);
+      @include no-select;
+      @include gradient($theme-dark, $theme-purple, vertical);
+      @include transition(all .5s ease-out .5s);
+      @include box(70px, 70px);
+
+      i {
+        font-size: $textH3;
+      }
+
+      &:hover {
+        @include gradient($theme-purple-accent, $theme-purple, vertical);
+        @include box-shadow(0, 0, 30px, $theme-gray-darker);
+      }
+
+      &:active, &:focus {
+        @include gradient($theme-purple-accent, $theme-purple-dark, vertical);
+      }
+
+      &.contentSelected {
+        @include transform(translateX(0) !important);
+      }
+
+      &.left {
+        left: 5%;
+        @include transform(translateX(-200%));
+      }
+
+      &.right {
+        right: 5%;
+        @include transform(translateX(200%));
+      }
+    }
 
 
     #sectionAreaWrapper {
@@ -74,16 +120,22 @@ main {
       margin: 0 auto;
       max-width: 1024px;
 
+
       .sectionEntry {
         display: flex;
         flex-flow: column wrap;
         @include transition(all .3s ease);
-        @include transform(translateX(-50%));
+        @include transform(translateX(50%));
         @include opacity(0);
         margin-bottom: 100px;
 
         &.hidden {
           display: none;
+        }
+
+        &.hideToLeft {
+          @include transform(translateX(-50%) !important);
+          opacity: 0 !important;
         }
 
         &.selected {
@@ -102,7 +154,6 @@ main {
             background: url('../assets/sections/skills_pic.jpg') no-repeat 50% 10% / cover;
           }
         }
-
 
         &.portfolio {
           .entryImage {
@@ -140,7 +191,7 @@ main {
               position: absolute;
               border-radius: 5px;
               @include box(100%, 100%);
-              @include gradient($theme-dark-lighter, $theme-dark-accent, vertical);
+              @include gradient($theme-purple, $theme-purple-accent, vertical);
               @include opacity(.6);
               @include position(0, 0);
             }
@@ -154,11 +205,11 @@ main {
             right: 80px;
             top: 100px;
             z-index: 5;
-            @include gradient($theme-dark, $theme-dark-lighter-horizon, horizontal);
+            @include gradient($theme-dark, $theme-purple-dark, horizontal);
             @include no-select;
 
             span {
-              color: $theme-accent;
+              color: $theme-blue-lighter;
             }
           }
         }
@@ -196,12 +247,12 @@ main {
               position: absolute;
               display: block;
               @include box(100%, 4px);
-              @include gradient($theme-dark-accent, $theme-dark-lighter-horizon, horizontal);
+              @include gradient($theme-purple-accent, $theme-purple-dark, horizontal);
               @include positionb(0, 0);
             }
 
             span {
-              color: $theme-accent;
+              color: $theme-blue-lighter;
             }
           }
 
@@ -215,6 +266,16 @@ main {
               text-align: justify;
               margin-bottom: 10px;
               hyphens: auto;
+
+              img {
+                height: 20px;
+                width: auto;
+              }
+
+              span {
+                color: $theme-blue-accent;
+
+              }
             }
           }
         }
@@ -232,9 +293,9 @@ main {
     border-radius: 10px;
     right: 0;
     @extend %flex-center;
-    @include box-shadow(0, 0, 50px, $theme-darker);
+    @include box-shadow(0, 0, 30px, $theme-gray-darker);
     @include no-select;
-    @include gradient($theme-dark-lighter-horizon, $theme-dark-lighter, vertical);
+    @include gradient($theme-dark, $theme-purple, vertical);
     @include transition(all .5s ease-out);
     @include box(70px, 70px);
     @include transform(translateY(30px));
@@ -244,17 +305,17 @@ main {
     }
 
     &:hover {
-      @include gradient($theme-dark-lighter-horizon, $theme-darker, vertical);
-      @include box-shadow(0, 0, 50px, $theme-darker);
+      @include gradient($theme-purple-accent, $theme-purple, vertical);
+      @include box-shadow(0, 0, 30px, $theme-gray-darker);
     }
 
     &:active, &:focus {
-      @include gradient($theme-dark-accent, $theme-dark-lighter-horizon, vertical);
+      @include gradient($theme-purple-accent, $theme-purple-dark, vertical);
     }
 
     &:before {
       content: '';
-      background-color: $theme-dark-accent;
+      background-color: $theme-purple-accent;
       border-radius: 50%;
       display: block;
       position: absolute;
@@ -270,7 +331,7 @@ main {
       50% {
         @include transform(scale(1.5, 1.5));
         @include opacity(0);
-        background-color: $theme-dark-accent;
+        background-color: $theme-purple-accent;
       }
       99% {
         @include transform(scale(0.001, 0.001));
@@ -279,7 +340,7 @@ main {
       100% {
         @include transform(scale(0.001, 0.001));
         @include opacity(1);
-        background-color: $theme-dark-accent;
+        background-color: $theme-purple-accent;
       }
     }
   }

@@ -86,13 +86,13 @@ nav {
           }
 
           &:first-child {
-            color: $theme-accent;
+            color: $theme-blue-lighter;
             @include transform(translateX(200%));
           }
 
           &:last-child {
             top: -20px;
-            color: $theme-dark-accent;
+            color: $theme-purple-accent;
             @include transform(translateX(-200%));
 
           }
@@ -133,7 +133,7 @@ nav {
       }
 
       &:hover span b {
-        color: $theme-accent;
+        color: $theme-blue-lighter;
       }
 
       button {
@@ -142,7 +142,7 @@ nav {
         font-family: $fontMain;
         font-size: $textH3;
         cursor: pointer;
-        color: $theme-accent;
+        color: $theme-blue-lighter;
         background: none;
         border: none;
         outline: none;
@@ -187,7 +187,7 @@ nav {
           }
 
           span b {
-            color: $theme-accent;
+            color: $theme-blue-lighter;
           }
 
           &::after {
@@ -214,7 +214,7 @@ nav {
 
     .item span b {
       font-size: $textH2 - 0.5rem;
-      color: $theme-accent-dark;
+      color: $theme-blue;
       position: relative;
       top: 2px;
     }

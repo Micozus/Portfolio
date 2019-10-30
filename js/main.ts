@@ -7,6 +7,9 @@ const hidden = document.querySelectorAll('.hidden');
 const sectionsArea = document.querySelector('main');
 const navArea = document.querySelector('nav');
 const sectionEntries = document.querySelectorAll('.sectionEntry');
+const sectionNavigateButton = document.querySelector('.sectionNavigate');
+
+let selectedView: string;
 
 canvas.width = 150;
 canvas.height = 150;
@@ -183,8 +186,10 @@ function stopCanvas() {
 }
 
 function mainMenuInit() {
+  sectionNavigateButton.classList.remove('contentSelected');
   navArea.classList.remove('contentSelected');
   loader.classList.add('hidden');
+  selectedView = null;
   setTimeout(() => {
     hidden.forEach(ele => ele.classList.remove('hidden'));
     canvasBraces.forEach(braces => braces.classList.remove('braces-show'));
@@ -193,7 +198,9 @@ function mainMenuInit() {
 }
 
 function onSelectView(section: string) {
+  selectedView = section;
   stopCanvas();
+  sectionNavigateButton.classList.add('contentSelected');
   navArea.classList.add('contentSelected');
   hidden[1].classList.add('menu-hide');
   hidden.forEach(ele => {
@@ -218,6 +225,34 @@ function onSelectView(section: string) {
 }
 
 function onSwitchView() {
+  sectionNavigateButton.firstChild.parentElement.style.pointerEvents = 'none';
+  let currentlySelectedView = document.querySelector('#sectionAreaWrapper .selected');
+  let newView: Element;
+  switch (selectedView) {
+    case 'about':
+      newView = sectionEntries[1];
+      selectedView = 'skills';
+      break;
+    case 'skills':
+      newView = sectionEntries[2];
+      selectedView = 'portfolio';
+      break;
+    case 'portfolio':
+      newView = sectionEntries[0];
+      selectedView = 'about';
+      break;
+  }
+  currentlySelectedView.classList.add('hideToLeft');
+  setTimeout(() => {
+    currentlySelectedView.classList.remove('selected');
+    currentlySelectedView.classList.add('hidden');
+    newView.classList.remove('hidden');
+  }, 400);
+  setTimeout(() => {
+    currentlySelectedView.classList.remove('hideToLeft');
+    newView.classList.add('selected');
+    sectionNavigateButton.firstChild.parentElement.style.pointerEvents = 'all';
+  }, 600);
 
 }
 

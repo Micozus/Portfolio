@@ -1,12 +1,15 @@
 $theme-darker: #21141a;
 $theme-dark: #27181f;
-$theme-dark-lighter-horizon: #341d28;
-$theme-dark-lighter: #452735;
-$theme-dark-accent: #983667;
+$theme-purple-dark: #341d28;
+$theme-purple: #452735;
+$theme-purple-accent: #983667;
 $theme-green-accent: #6dcb67;
-$theme-accent-darker: #181e25;
-$theme-accent-dark: #38495b;
-$theme-accent: #689fac;
+$theme-gray-darker: #111111;
+$theme-gray: #222222;
+$theme-blue-darker: #181e25;
+$theme-blue: #38495b;
+$theme-blue-lighter: #689fac;
+$theme-blue-accent: #7ec1d1;
 $theme-light-dark: #c0d1ca;
 $theme-light: #ecf1e0;
 
@@ -42,7 +45,7 @@ body {
   background: $theme-dark;
   font-size: $textNormal;
   font-family: $fontMain;
-  color: $theme-accent-dark;
+  color: $theme-blue;
 }
 
 a {
@@ -86,7 +89,7 @@ b, strong {
 
     div {
       height: 50vh;
-      @include gradient($theme-dark-lighter, $theme-dark-lighter-horizon, vertical);
+      @include gradient($theme-purple, $theme-purple-dark, vertical);
     }
 
   }
@@ -109,7 +112,7 @@ b, strong {
   border-top: 1.1em solid rgba(255, 255, 255, 0.2);
   border-right: 1.1em solid rgba(255, 255, 255, 0.2);
   border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
-  border-left: 1.1em solid $theme-accent;
+  border-left: 1.1em solid $theme-blue-lighter;
   @include transform(translateZ(0));
   @include animation(load8 1.1s infinite linear);
   @include transition(all .3s ease);
