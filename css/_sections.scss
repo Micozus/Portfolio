@@ -261,20 +261,131 @@ main {
             font-size: $textBig;
             color: $theme-light;
 
+            .skillsDivide {
+              display: flex;
+              flex-flow: row nowrap;
+              @extend %flex-center;
+
+              div {
+                flex-basis: 50%;
+                position: relative;
+                padding: 25px;
+                align-self: flex-start;
+
+                .iconsBox {
+                  display: flex;
+                  flex-flow: row wrap;
+                  justify-content: space-evenly;
+                  padding: 10px;
+                  background: $theme-purple;
+                  border-radius: 10px;
+                  margin-top: 20px;
+
+                  img {
+                    height: 40px;
+                    width: auto;
+                    margin-right: 5px;
+                  }
+                }
+
+                &:first-child:after {
+                  content: '';
+                  position: absolute;
+                  display: block;
+                  @include positionb(0, 0);
+                  @include box(5px, 80%);
+                  @include gradient($theme-purple-dark, $theme-purple-accent, vertical);
+                }
+              }
+            }
+
+            .portfolioGrid {
+              display: grid;
+              grid-template-columns: repeat(4, 1fr);
+              grid-template-rows: repeat(9, 5vw);
+              grid-gap: 15px;
+
+              .portfolioEntry {
+                position: relative;
+                @include box-shadow(0, 0, 30px, $theme-darker);
+
+                &:hover:after {
+                  @include opacity(.95);
+                }
+
+                &:after {
+                  content: '';
+                  position: absolute;
+                  @include box(100%, 100%);
+                  @include position(0, 0);
+                  @include gradient(rgba(0, 0, 0, .5), $theme-purple-dark, vertical);
+                  @include opacity(.4);
+                  @include transition(all .3s ease-in);
+                }
+
+                &:first-child {
+                  grid-column-start: 1;
+                  grid-column-end: 3;
+                  grid-row-start: 1;
+                  grid-row-end: 4;
+                  background: url("../assets/portfolio/p1-dbamojutro.jpg") no-repeat 0 0 / cover;
+                }
+
+                &:nth-child(2) {
+                  grid-column-start: 3;
+                  grid-column-end: 5;
+                  grid-row-start: 1;
+                  grid-row-end: 3;
+                  background: url("../assets/portfolio/p2-fitcasco.jpg") no-repeat 0 0 / cover;
+                }
+
+                &:nth-child(3) {
+                  grid-column-start: 3;
+                  grid-column-end: 5;
+                  grid-row-start: 3;
+                  grid-row-end: 6;
+                  background: url("../assets/portfolio/p3-bsl.jpg") no-repeat 0 0 / cover;
+                }
+
+                &:nth-child(4) {
+                  grid-column-start: 1;
+                  grid-column-end: 3;
+                  grid-row-start: 4;
+                  grid-row-end: 6;
+                  background: url("../assets/portfolio/p4-bikbrokers.jpg") no-repeat 0 0 / cover;
+                }
+
+                &:last-child {
+                  grid-column-start: 1;
+                  grid-column-end: 5;
+                  grid-row-start: 6;
+                  grid-row-end: 9;
+                  background: url("../assets/portfolio/p5-bikserwis.jpg") no-repeat 0 0 / cover;
+                }
+              }
+            }
+
+            h2 {
+              font-size: $textH3;
+              color: $theme-blue-accent;
+              margin-bottom: 15px;
+
+              span {
+                color: $theme-purple-accent;
+                font-size: $textH2;
+                position: relative;
+                top: 5px;
+              }
+            }
+
             p {
               line-height: 1.3;
               text-align: justify;
               margin-bottom: 10px;
               hyphens: auto;
 
-              img {
-                height: 20px;
-                width: auto;
-              }
-
               span {
                 color: $theme-blue-accent;
-
               }
             }
           }
