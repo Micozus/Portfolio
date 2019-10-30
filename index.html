@@ -52,16 +52,16 @@
     </div>
     <div id="middleMenuWrapper">
       <div class="item">
-        <button class="hidden" onclick="onChangeView('about')" tabindex="1"><i class="material-icons">mood</i>
+        <button class="hidden" onclick="onSelectView('about')" tabindex="1"><i class="material-icons">mood</i>
           <span><b>/</b> O mnie</span></button>
       </div>
       <div class="item">
-        <button class="hidden" onclick="onChangeView('skills')" tabindex="2"><i class="material-icons">star_border</i>
+        <button class="hidden" onclick="onSelectView('skills')" tabindex="2"><i class="material-icons">star_border</i>
           <span><b>/</b> Umiejętności</span>
         </button>
       </div>
       <div class="item">
-        <button class="hidden" onclick="onChangeView('portfolio')" tabindex="3"><i class="material-icons">done_all</i>
+        <button class="hidden" onclick="onSelectView('portfolio')" tabindex="3"><i class="material-icons">done_all</i>
           <span><b>/</b> Realizacje</span>
         </button>
       </div>
@@ -70,32 +70,65 @@
 
   <main class="unselected">
     <header>
-      <span class="siteTitle">
+      <div class="headerWrapper">
+        <span class="siteTitle">
           paweł_Mikos
       </span>
-      <div>
-        <span class="braces">{</span><span class="braces">}</span>
-      </div>
-      <span class="siteTitle">
+        <div>
+          <span class="braces">{</span><span class="braces">}</span>
+        </div>
+        <span class="siteTitle">
           developer-Portfolio
         </span>
+        <div tabindex="0" onclick="onBackToMenu()" id="backToMainMenuCta">
+          <i class="material-icons">
+            expand_less
+          </i>
+        </div>
+      </div>
     </header>
-    <div tabindex="0" onclick="onBackToMenu()" id="backToMainMenuCta">
-      <i class="material-icons">
-        expand_less
-      </i>
-    </div>
+
     <section>
       <div id="sectionAreaWrapper">
-        <div class="sectionEntry about">
+        <div class="sectionEntry about hidden">
           <div class="entryHighlight">
             <div class="entryImage"></div>
             <div class="entryTitle">
               <span>//</span> Cześć! Jestem Paweł,
-              <br/><span>//</span> poznajmy się :)</div>
+              <br/><span>//</span> poznajmy się :)
+            </div>
           </div>
           <div class="entryContent">
+            <div class="entryName"><span>/</span> O mnie</div>
+            <div></div>
+          </div>
+        </div>
 
+        <div class="sectionEntry skills hidden">
+          <div class="entryHighlight">
+            <div class="entryImage"></div>
+            <div class="entryTitle">
+              <span>//</span> Zobacz moje
+              <br/><span>//</span> programistyczne SWOT :)
+            </div>
+          </div>
+          <div class="entryContent">
+            <div class="entryName"><span>/</span> Umiejętności</div>
+            <div></div>
+          </div>
+        </div>
+
+        <div class="sectionEntry portfolio hidden">
+          <div class="entryHighlight">
+            <div class="entryImage"></div>
+            <div class="entryTitle">
+              <span>//</span> Zobacz co do tej pory
+              <br/><span>//</span> udało mi się zakodować.
+            </div>
+          </div>
+          <div class="entryContent">
+            <div class="entryName"><span>/</span> Realizacje</div>
+            <div></div>
           </div>
         </div>
       </div>

@@ -6,6 +6,7 @@ const c = canvas.getContext('2d');
 const hidden = document.querySelectorAll('.hidden');
 const sectionsArea = document.querySelector('main');
 const navArea = document.querySelector('nav');
+const sectionEntries = document.querySelectorAll('.sectionEntry');
 
 canvas.width = 150;
 canvas.height = 150;
@@ -191,23 +192,42 @@ function mainMenuInit() {
   }, 600);
 }
 
-function onChangeView(section: string) {
+function onSelectView(section: string) {
   stopCanvas();
   navArea.classList.add('contentSelected');
   hidden[1].classList.add('menu-hide');
   hidden.forEach(ele => {
     if (!ele.classList.contains('item')) ele.classList.add('hidden')
   });
-  setTimeout(() => sectionsArea.classList.remove('unselected'), 600);
+  setTimeout(() => {
+    sectionsArea.classList.remove('unselected');
+    sectionEntries.forEach(entry => {
+      entry.classList.add('hidden');
+      if (entry.classList.contains(section)) {
+        entry.classList.remove('hidden');
+      }
+    })
+  }, 600);
+  setTimeout(() => {
+    sectionEntries.forEach(entry => {
+      if (entry.classList.contains(section)) {
+        entry.classList.add('selected');
+      }
+    })
+  }, 800);
 }
 
-function hideHeader() {
+function hideHeaderAndSectionContent() {
   hidden[1].classList.remove('menu-hide');
   sectionsArea.classList.add('unselected');
+  sectionEntries.forEach(entry => {
+    entry.classList.add('hidden');
+    entry.classList.remove('selected');
+  })
 }
 
 function onBackToMenu() {
-  hideHeader();
+  hideHeaderAndSectionContent();
   stopCanvas();
   mainMenuInit();
   startCanvas();

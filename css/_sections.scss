@@ -13,25 +13,26 @@ main {
     header {
       max-height: 0;
     }
-
-    #backToMainMenuCta {
-      @include transform(translateY(-70px));
-      @include opacity(0);
-    }
   }
 
   header {
-    display: flex;
     max-height: 90px;
     padding: 5px 0;
-    overflow: hidden;
     position: fixed;
-    z-index: 10000;
+    z-index: 9999;
     @include position(0, 0);
     @include gradient($white, $theme-light-dark, vertical);
     @include box(100%, auto);
-    @extend %flex-center;
+
     @include transition(all .3s ease);
+
+    .headerWrapper {
+      max-width: 1024px;
+      margin: 0 auto;
+      display: flex;
+      position: relative;
+      @extend %flex-center;
+    }
 
     span {
       color: $theme-dark;
@@ -67,22 +68,43 @@ main {
     @include transition(all .3s ease);
 
     #sectionAreaWrapper {
+      position: relative;
       margin: 0 auto;
       max-width: 1024px;
 
       .sectionEntry {
         display: flex;
         flex-flow: column wrap;
+        @include transition(all .3s ease);
+        @include transform(translateX(-50%));
+        @include opacity(0);
+
+        &.hidden {
+          display: none;
+        }
+
+        &.selected {
+          @include transform(translateX(0%));
+          @include opacity(1);
+        }
 
         &.about {
           .entryImage {
-            background: url('../assets/sections/about_pic.jpg') no-repeat 50% 50% / cover;
+            background: url('../assets/sections/about_pic.jpg') no-repeat 50% 10% / cover;
           }
         }
 
-        > div {
-          width: 100%;
-          margin: 10px;
+        &.skills {
+          .entryImage {
+            background: url('../assets/sections/skills_pic.jpg') no-repeat 50% 10% / cover;
+          }
+        }
+
+
+        &.portfolio {
+          .entryImage {
+            background: url('../assets/sections/portfolio_pic.jpg') no-repeat 50% 10% / cover;
+          }
         }
 
         .entryHighlight {
@@ -93,48 +115,74 @@ main {
           > div {
             position: relative;
             border-radius: 5px;
-            @include box-shadow(0, 0, 30px, $theme-dark);
+            @include box-shadow(0, 0, 50px, $theme-dark);
           }
 
           .entryImage {
-            left: 50px;
-            @include box(40%, 200px);
+            left: 80px;
+            @include box(50%, 200px);
 
             &::before {
-              background: rgba(255, 255, 255, .5);
+              background: rgba(255, 255, 255, .3);
               content: '';
               position: absolute;
               z-index: 4;
               border-radius: 5px;
-              @include box(100%, 30%);
-              @include position(60%, 70%);
+              @include box(70%, 30%);
+              @include position(65%, 65%);
             }
 
             &::after {
               content: '';
               position: absolute;
+              border-radius: 5px;
               @include box(100%, 100%);
               @include gradient($theme-dark-lighter, $theme-dark-accent, vertical);
               @include opacity(.6);
               @include position(0, 0);
-              border-radius: 5px;
             }
           }
 
           .entryTitle {
-            background: $theme-dark-lighter-horizon;
-            width: 60%;
+            width: 50%;
             padding: 20px;
             color: $theme-light;
             font-size: $textH3;
-            right: 50px;
+            right: 80px;
+            top: 100px;
             z-index: 5;
+            @include gradient($theme-dark, $theme-dark-lighter-horizon, horizontal);
+            @include no-select;
 
             span {
               color: $theme-accent;
             }
+          }
+        }
 
+        .entryContent {
+          margin-top: 50px;
+          width: 100%;
 
+          .entryName {
+            font-size: $textH3;
+            color: $theme-light;
+            padding: 20px;
+            position: relative;
+            @include no-select;
+
+            &::after {
+              content: '';
+              position: absolute;
+              display: block;
+              @include box(100%, 4px);
+              @include gradient($theme-dark-accent, $theme-dark-lighter-horizon, horizontal);
+              @include positionb(0, 0);
+            }
+
+            span {
+              color: $theme-accent;
+            }
           }
         }
       }
@@ -142,24 +190,29 @@ main {
   }
 
   #backToMainMenuCta {
-    position: relative;
-    z-index: 9999;
-    margin: 0 auto;
+    position: absolute;
+    z-index: 10000;
     color: $theme-light;
     display: flex;
     cursor: pointer;
     overflow: hidden;
+    border-radius: 10px;
+    right: 0%;
     @extend %flex-center;
-    @include box-shadow(0, 0, 30px, $theme-dark);
+    @include box-shadow(0, 0, 50px, $theme-darker);
     @include no-select;
-    @include gradient($theme-dark, $theme-dark-lighter-horizon, vertical);
+    @include gradient($theme-dark-lighter-horizon, $theme-dark-lighter, vertical);
     @include transition(all .5s ease-out);
-    @include box(50px, 50px);
-    @include transform(translateY(70px));
+    @include box(70px, 70px);
+    @include transform(translateY(30px));
+
+    i {
+      font-size: $textH3;
+    }
 
     &:hover {
-      @include gradient($theme-darker, $theme-dark-lighter-horizon, vertical);
-      @include box-shadow(0, 0, 30px, $theme-darker);
+      @include gradient($theme-dark-lighter-horizon, $theme-darker, vertical);
+      @include box-shadow(0, 0, 50px, $theme-darker);
     }
 
     &:active, &:focus {
