@@ -23,7 +23,7 @@ main {
     @include position(0, 0);
     @include gradient($theme-purple, $theme-purple-dark, vertical);
     @include box(100%, auto);
-    @include box-shadow(0, 0, 30px, $theme-gray-darker);
+    @include box-shadow(0, 0, 10px, $theme-gray-darker);
     @include transition(all .3s ease);
 
     .headerWrapper {
@@ -78,13 +78,12 @@ main {
       overflow: hidden;
       border-radius: 10px;
       top: 45%;
-
       @extend %flex-center;
-      @include box-shadow(0, 0, 30px, $theme-gray-darker);
+      @include box-shadow(0, 0, 10px, $theme-gray-darker);
       @include no-select;
       @include gradient($theme-dark, $theme-purple, vertical);
       @include transition(all .5s ease-out .5s);
-      @include box(70px, 70px);
+      @include box(50px, 50px);
 
       i {
         font-size: $textH3;
@@ -92,7 +91,7 @@ main {
 
       &:hover {
         @include gradient($theme-purple-accent, $theme-purple, vertical);
-        @include box-shadow(0, 0, 30px, $theme-gray-darker);
+        @include box-shadow(0, 0, 10px, $theme-gray-darker);
       }
 
       &:active, &:focus {
@@ -124,18 +123,18 @@ main {
       .sectionEntry {
         display: flex;
         flex-flow: column wrap;
+        margin-bottom: 100px;
         @include transition(all .3s ease);
         @include transform(translateX(50%));
         @include opacity(0);
-        margin-bottom: 100px;
 
         &.hidden {
           display: none;
         }
 
         &.hideToLeft {
-          @include transform(translateX(-50%) !important);
           opacity: 0 !important;
+          @include transform(translateX(-50%) !important);
         }
 
         &.selected {
@@ -169,7 +168,7 @@ main {
           > div {
             position: relative;
             border-radius: 5px;
-            @include box-shadow(0, 0, 50px, $theme-dark);
+            @include box-shadow(0, 0, 10px, $theme-dark);
           }
 
           .entryImage {
@@ -307,7 +306,7 @@ main {
 
               .portfolioEntry {
                 position: relative;
-                @include box-shadow(0, 0, 30px, $theme-darker);
+                @include box-shadow(0, 0, 10px, $theme-darker);
 
                 &:hover:after {
                   @include opacity(.95);
@@ -404,11 +403,11 @@ main {
     border-radius: 10px;
     right: 0;
     @extend %flex-center;
-    @include box-shadow(0, 0, 30px, $theme-gray-darker);
+    @include box-shadow(0, 0, 10px, $theme-gray-darker);
     @include no-select;
     @include gradient($theme-dark, $theme-purple, vertical);
     @include transition(all .5s ease-out);
-    @include box(70px, 70px);
+    @include box(50px, 50px);
     @include transform(translateY(30px));
 
     i {
@@ -417,7 +416,7 @@ main {
 
     &:hover {
       @include gradient($theme-purple-accent, $theme-purple, vertical);
-      @include box-shadow(0, 0, 30px, $theme-gray-darker);
+      @include box-shadow(0, 0, 10px, $theme-gray-darker);
     }
 
     &:active, &:focus {

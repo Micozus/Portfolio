@@ -17,7 +17,7 @@ footer {
       font-size: $textBig;
       color: $theme-light;
       cursor: pointer;
-      @include box-shadow(0, 0, 30px, $theme-dark);
+      @include box-shadow(0, 0, 10px, $theme-dark);
       @include no-select;
       @include gradient($theme-dark, $theme-purple-dark, vertical);
       @include transition(all .3s ease-in-out);
@@ -30,7 +30,7 @@ footer {
 
       &:hover {
         @include gradient($theme-darker, $theme-purple-dark, vertical);
-        @include box-shadow(0, 0, 30px, $theme-darker);
+        @include box-shadow(0, 0, 10px, $theme-darker);
         @include transform(translateY(-20%));
       }
 
