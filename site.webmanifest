@@ -1,12 +1,12 @@
 {
-  "short_name": "",
-  "name": "",
+  "short_name": "pawel_Mikos-developer-Portfolio",
+  "name": "Paweł Mikos - developer portfolio",
   "icons": [{
-    "src": "icon.png",
+    "src": "assets/ico/icon.png",
     "type": "image/png",
     "sizes": "192x192"
   }],
-  "start_url": "/?utm_source=homescreen",
-  "background_color": "#fafafa",
-  "theme_color": "#fafafa"
+  "start_url": "/",
+  "background_color": "#341d28",
+  "theme_color": "#7ec1d1"
 }

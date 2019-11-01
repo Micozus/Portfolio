@@ -1,3 +1,20 @@
+@include keyframes (pulse) {
+  50% {
+    @include transform(scale(1.5, 1.5));
+    @include opacity(0);
+    background-color: $theme-purple-accent;
+  }
+  99% {
+    @include transform(scale(0.001, 0.001));
+    @include opacity(0);
+  }
+  100% {
+    @include transform(scale(0.001, 0.001));
+    @include opacity(1);
+    background-color: $theme-purple-accent;
+  }
+}
+
 main {
   position: absolute;
   margin: 0 auto;
@@ -32,6 +49,10 @@ main {
       display: flex;
       position: relative;
       @extend %flex-center;
+      @include breakpoint-mobile {
+        max-width: 90vw;
+        justify-content: flex-start;
+      }
     }
 
     span {
@@ -41,12 +62,20 @@ main {
       &.siteTitle {
         font-size: $textH3;
         margin: 0 25px;
+        @include breakpoint-mobile {
+          font-size: $textSmall;
+          margin: 0 10px;
+        }
       }
 
       &.braces {
         display: inline-block;
         position: relative;
         font-size: $textH2;
+
+        @include breakpoint-mobile {
+          font-size: $textSmall;
+        }
 
         &:first-of-type {
           color: $theme-blue-lighter;
@@ -55,6 +84,9 @@ main {
         &:last-of-type {
           top: -10px;
           color: $theme-purple-accent;
+          @include breakpoint-mobile {
+            top: -5px;
+          }
         }
       }
     }
@@ -68,6 +100,10 @@ main {
     @include gradient($theme-dark, $theme-purple-dark, vertical);
     @include box(100vw, 90vh);
     @include transition(all .3s ease);
+    @include breakpoint-mobile {
+      margin-top: 5vh;
+      @include box(100vw, 100vh);
+    }
 
     .sectionNavigate {
       position: fixed;
@@ -84,9 +120,29 @@ main {
       @include gradient($theme-dark, $theme-purple, vertical);
       @include transition(all .5s ease-out .5s);
       @include box(50px, 50px);
+      @include breakpoint-tablet-por {
+        @include box(40px, 100px);
+
+      }
 
       i {
         font-size: $textH3;
+      }
+
+      @include breakpoint-mobile {
+        &:before {
+          content: '';
+          background-color: $theme-purple-accent;
+          border-radius: 50%;
+          display: block;
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          @include animation(pulse 2s ease-out 0s infinite);
+          @include transform(scale(0.001, 0.001));
+        }
       }
 
       &:hover {
@@ -110,6 +166,16 @@ main {
       &.right {
         right: 5%;
         @include transform(translateX(200%));
+        @include breakpoint-tablet-por {
+          right: 0;
+        }
+        @include breakpoint-mobile {
+          right: 5px;
+          top: unset;
+          bottom: 5px;
+          border-radius: 5px;
+          @include box(40px, 40px);
+        }
       }
     }
 
@@ -164,6 +230,10 @@ main {
           display: flex;
           flex-flow: row nowrap;
           @extend %flex-center;
+          @include breakpoint-mobile {
+            display: unset;
+            flex-flow: unset;
+          }
 
           > div {
             position: relative;
@@ -174,6 +244,16 @@ main {
           .entryImage {
             left: 80px;
             @include box(50%, 200px);
+            @include breakpoint-mobile {
+              @include box(100%, 300px);
+              left: unset;
+              &::before {
+                display: none;
+              }
+            }
+            @include breakpoint-mobile-land {
+              @include box(100%, 200px);
+            }
 
             &::before {
               background: rgba(255, 255, 255, .3);
@@ -206,6 +286,14 @@ main {
             z-index: 5;
             @include gradient($theme-dark, $theme-purple-dark, horizontal);
             @include no-select;
+            @include breakpoint-mobile {
+              width: 80%;
+              max-width: 300px;
+              font-size: $textNormal;
+              right: unset;
+              top: -50px;
+              left: 10px;
+            }
 
             span {
               color: $theme-blue-lighter;
@@ -216,6 +304,12 @@ main {
         .entryContent {
           width: 90%;
           margin: 50px auto 0 auto;
+          @include breakpoint-tablet-por {
+            width: 85%;
+          }
+          @include breakpoint-mobile {
+            margin: -50px auto 0 auto;
+          }
 
           .entryName {
             font-size: $textH3;
@@ -260,10 +354,18 @@ main {
             font-size: $textBig;
             color: $theme-light;
 
+            @include breakpoint-mobile {
+              font-size: $textNormal;
+              padding: unset;
+            }
+
             .skillsDivide {
               display: flex;
               flex-flow: row nowrap;
               @extend %flex-center;
+              @include breakpoint-mobile {
+                flex-flow: column nowrap;
+              }
 
               div {
                 flex-basis: 50%;
@@ -271,21 +373,39 @@ main {
                 padding: 25px;
                 align-self: flex-start;
 
+                @include breakpoint-mobile {
+                  flex-basis: unset;
+                  padding: 10px 5px;
+                  &:first-child {
+                    margin-bottom: 10px;
+                  }
+                }
+
                 .iconsBox {
                   display: flex;
                   flex-flow: row wrap;
-                  justify-content: space-evenly;
+                  justify-content: flex-start;
                   padding: 10px;
                   background: $theme-purple;
                   border-radius: 10px;
                   margin-top: 20px;
+                  @include breakpoint-mobile {
+                    justify-content: space-evenly;
+                  }
 
                   img {
                     height: 40px;
                     width: auto;
                     margin-right: 5px;
+                    @include breakpoint-tablet-por {
+                      height: 30px;
+                    }
+                    @include breakpoint-mobile {
+                      height: 30px;
+                    }
                   }
                 }
+
 
                 &:first-child:after {
                   content: '';
@@ -294,6 +414,11 @@ main {
                   @include positionb(0, 0);
                   @include box(5px, 80%);
                   @include gradient($theme-purple-dark, $theme-purple-accent, vertical);
+                  @include breakpoint-mobile {
+                    @include gradient($theme-purple-accent, $theme-purple-dark, horizontal);
+                    @include positionb(-10px, 0);
+                    @include box(100%, 2px);
+                  }
                 }
               }
             }
@@ -303,13 +428,208 @@ main {
               grid-template-columns: repeat(4, 1fr);
               grid-template-rows: repeat(9, 5vw);
               grid-gap: 15px;
+              @include breakpoint-mobile {
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: repeat(25, 5vw);
+                grid-gap: 5px;
+              }
 
               .portfolioEntry {
                 position: relative;
+                overflow: hidden;
                 @include box-shadow(0, 0, 10px, $theme-darker);
 
-                &:hover:after {
-                  @include opacity(.95);
+                .entryInfoIcon {
+                  position: absolute;
+                  background: url("../assets/ico/info-button.svg") no-repeat 50% 50% / contain;
+                  z-index: 5;
+                  top: 10px;
+                  right: 10px;
+                  @include filter(invert(100%));
+                  @include box(20px, 20px);
+                  @include transition(all .3s ease);
+                  @include breakpoint-mobile {
+                    top: 9px;
+                    right: 9px;
+                    @include box(17px, 17px);
+                  }
+                }
+
+                .entryInfo {
+                  position: absolute;
+                  z-index: 5;
+                  padding-left: 10px;
+                  bottom: 0;
+                  @include transition(all .3s ease-out);
+
+                  h2 {
+                    display: inline-block;
+                    font-weight: 600;
+                    font-size: $textBig;
+                    color: $theme-light;
+                    @include breakpoint-mobile {
+                      font-size: $textNormal;
+                    }
+                  }
+
+                  span {
+                    display: inline-block;
+                    margin-left: 5px;
+                    color: $theme-blue-accent;
+                    font-size: $textNormal;
+                    @include transform(translateX(-50%));
+                    @include opacity(0);
+                    @include transition(all .2s ease-out);
+                    @include breakpoint-tablet-por {
+                      font-size: $textSmall;
+                    }
+                    @include breakpoint-mobile {
+                      font-size: $textBreadcrumb;
+                    }
+                  }
+                }
+
+                .entryTitle {
+                  @include transition(all .3s ease-out);
+                  @include no-select;
+
+                  h2 {
+                    margin-bottom: 10px;
+                    @include breakpoint-tablet-por {
+                      margin-bottom: 15px;
+                    }
+                  }
+                }
+
+                .entryAdditional {
+                  max-height: 0;
+                  position: relative;
+                  margin-bottom: 10px;
+                  @include transition(all .3s ease-out);
+
+                  .entryTechStack {
+                    width: auto;
+                    display: flex;
+                    flex-flow: row;
+                    justify-content: flex-start;
+                    @include transition(all .3s ease);
+                    @include opacity(0);
+
+                    img {
+                      margin-right: 5px;
+                      @include box(30px, 30px);
+                      @include breakpoint-tablet-por {
+                        margin-right: 3px;
+                        @include box(20px, 20px);
+                      }
+                      @include breakpoint-mobile {
+                        margin-right: 3px;
+                        @include box(15px, 15px);
+                      }
+                    }
+                  }
+
+
+                }
+
+                .entryLive {
+                  position: absolute;
+                  z-index: 5;
+                  @include positionb(10px, 10px);
+                  @include breakpoint-tablet-por {
+                    @include positionb(5px, 5px);
+                  }
+                  @include breakpoint-mobile {
+                    @include positionb(5px, 5px);
+                  }
+
+                  button {
+                    display: flex;
+                    color: $theme-light;
+                    font-size: $textBig;
+                    border: 0;
+                    border-radius: 5px;
+                    padding: 10px;
+                    z-index: 5;
+                    cursor: pointer;
+                    @include transform(translateX(150%));
+                    @include opacity(0);
+                    @extend %flex-center;
+                    @include gradient($theme-blue-accent, $theme-blue, vertical);
+                    @include transition(all .3s ease);
+                    @include breakpoint-tablet-por {
+                      font-size: $textSmall;
+                      padding: 4px;
+                    }
+                    @include breakpoint-mobile {
+                      font-size: $textBreadcrumb;
+                      padding: 5px;
+
+                      i {
+                        font-size: $textBreadcrumb;
+                      }
+                    }
+                    @include breakpoint-mobile-land {
+                      font-size: $textNormal;
+                      padding: 5px;
+
+                      i {
+                        font-size: $textNormal;
+                      }
+                    }
+
+                    i {
+                      display: inline-block;
+                      margin-right: 5px;
+                    }
+
+                    &:hover {
+                      @include gradient($theme-blue-accent, $theme-blue-darker, vertical);
+                    }
+                  }
+                }
+
+                .entryBackground {
+                  background-repeat: no-repeat;
+                  background-position: 0 0;
+                  background-size: cover;
+                  position: absolute;
+                  @include box(100%, 100%);
+                  @include transition(all .3s ease);
+                }
+
+                &:hover, &:focus {
+
+                  button {
+                    @include transform(translateX(0));
+                    @include opacity(1);
+                  }
+
+                  .entryBackground {
+                    @include filter(blur(5px));
+                  }
+
+                  .entryInfoIcon {
+                    @include filter(invert(70%));
+                  }
+
+                  .entryTitle span {
+                    @include transform(translateX(0%));
+                    @include opacity(1);
+                  }
+
+                  .entryAdditional {
+                    max-height: 80px;
+
+                    .entryTechStack {
+                      @include opacity(1);
+                    }
+
+                  }
+                }
+
+                &:hover:after, &:focus:after {
+                  @include opacity(1);
                 }
 
                 &:after {
@@ -318,8 +638,8 @@ main {
                   @include box(100%, 100%);
                   @include position(0, 0);
                   @include gradient(rgba(0, 0, 0, .5), $theme-purple-dark, vertical);
-                  @include opacity(.4);
-                  @include transition(all .3s ease-in);
+                  @include opacity(.7);
+                  @include transition(all .3s ease);
                 }
 
                 &:first-child {
@@ -327,7 +647,17 @@ main {
                   grid-column-end: 3;
                   grid-row-start: 1;
                   grid-row-end: 4;
-                  background: url("../assets/portfolio/p1-dbamojutro.jpg") no-repeat 0 0 / cover;
+                  @include breakpoint-mobile {
+                    grid-column-start: 1;
+                    grid-column-end: 5;
+                    grid-row-start: 1;
+                    grid-row-end: 6;
+                  }
+
+                  .entryBackground {
+                    background-image: url("../assets/portfolio/p1-dbamojutro.jpg");
+                  }
+
                 }
 
                 &:nth-child(2) {
@@ -335,7 +665,16 @@ main {
                   grid-column-end: 5;
                   grid-row-start: 1;
                   grid-row-end: 3;
-                  background: url("../assets/portfolio/p2-fitcasco.jpg") no-repeat 0 0 / cover;
+                  @include breakpoint-mobile {
+                    grid-column-start: 1;
+                    grid-column-end: 5;
+                    grid-row-start: 6;
+                    grid-row-end: 11;
+                  }
+
+                  .entryBackground {
+                    background-image: url("../assets/portfolio/p2-fitcasco.jpg");
+                  }
                 }
 
                 &:nth-child(3) {
@@ -343,7 +682,17 @@ main {
                   grid-column-end: 5;
                   grid-row-start: 3;
                   grid-row-end: 6;
-                  background: url("../assets/portfolio/p3-bsl.jpg") no-repeat 0 0 / cover;
+                  @include breakpoint-mobile {
+                    grid-column-start: 1;
+                    grid-column-end: 5;
+                    grid-row-start: 11;
+                    grid-row-end: 16;
+                  }
+
+                  .entryBackground {
+                    background-image: url("../assets/portfolio/p3-bsl.jpg");
+                  }
+
                 }
 
                 &:nth-child(4) {
@@ -351,7 +700,17 @@ main {
                   grid-column-end: 3;
                   grid-row-start: 4;
                   grid-row-end: 6;
-                  background: url("../assets/portfolio/p4-bikbrokers.jpg") no-repeat 0 0 / cover;
+                  @include breakpoint-mobile {
+                    grid-column-start: 1;
+                    grid-column-end: 5;
+                    grid-row-start: 16;
+                    grid-row-end: 21;
+                  }
+
+                  .entryBackground {
+                    background-image: url("../assets/portfolio/p4-bikbrokers.jpg");
+                  }
+
                 }
 
                 &:last-child {
@@ -359,7 +718,17 @@ main {
                   grid-column-end: 5;
                   grid-row-start: 6;
                   grid-row-end: 9;
-                  background: url("../assets/portfolio/p5-bikserwis.jpg") no-repeat 0 0 / cover;
+                  @include breakpoint-mobile {
+                    grid-column-start: 1;
+                    grid-column-end: 5;
+                    grid-row-start: 21;
+                    grid-row-end: 26;
+                  }
+
+                  .entryBackground {
+                    background-image: url("../assets/portfolio/p5-bikserwis.jpg");
+                  }
+
                 }
               }
             }
@@ -368,13 +737,21 @@ main {
               font-size: $textH3;
               color: $theme-blue-accent;
               margin-bottom: 15px;
+              @include breakpoint-mobile {
+                font-size: $textNormal;
+              }
 
               span {
                 color: $theme-purple-accent;
                 font-size: $textH2;
                 position: relative;
                 top: 5px;
+                @include breakpoint-mobile {
+                  font-size: $textBig;
+                  top: unset;
+                }
               }
+
             }
 
             p {
@@ -409,6 +786,13 @@ main {
     @include transition(all .5s ease-out);
     @include box(50px, 50px);
     @include transform(translateY(30px));
+    @include breakpoint-tablet-por {
+      right: 30px;
+    }
+    @include breakpoint-mobile {
+      @include box(40px, 40px);
+      @include transform(translateY(10px));
+    }
 
     i {
       font-size: $textH3;
@@ -437,21 +821,6 @@ main {
       @include transform(scale(0.001, 0.001));
     }
 
-    @include keyframes (pulse) {
-      50% {
-        @include transform(scale(1.5, 1.5));
-        @include opacity(0);
-        background-color: $theme-purple-accent;
-      }
-      99% {
-        @include transform(scale(0.001, 0.001));
-        @include opacity(0);
-      }
-      100% {
-        @include transform(scale(0.001, 0.001));
-        @include opacity(1);
-        background-color: $theme-purple-accent;
-      }
-    }
+
   }
 }

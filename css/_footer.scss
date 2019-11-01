@@ -8,6 +8,11 @@ footer {
     flex-flow: row nowrap;
     margin: 0 auto;
 
+    @include breakpoint-mobile {
+      justify-content: flex-start;
+      width: 100vw;
+    }
+
     .item {
       position: relative;
       top: 20px;
@@ -22,6 +27,16 @@ footer {
       @include gradient($theme-dark, $theme-purple-dark, vertical);
       @include transition(all .3s ease-in-out);
       @include transform(translateY(0%));
+      @include breakpoint-mobile {
+        height: 30px;
+        font-size: $textSmall;
+        margin: 0 5px;
+        padding: 15px;
+        top: 15px;
+        i {
+          font-size: $textSmall;
+        }
+      }
 
       &.hidden {
         @include transform(translateY(100%));

@@ -30,6 +30,45 @@ nav {
     @include opacity(1);
     @extend %flex-center;
     @include transition(all .4s ease-out);
+    @include breakpoint-mobile {
+      flex-flow: column nowrap;
+      > div {
+        position: relative;
+
+        &:first-child {
+          top: -120px;
+          order: 2;
+        }
+
+        &:last-child {
+          top: -120px;
+          order: 3;
+        }
+      }
+    }
+    @include breakpoint-mobile-land {
+      flex-flow: row nowrap;
+      top: -10px;
+      > div {
+        position: relative;
+
+        &:first-child {
+          order: unset;
+          top: unset;
+        }
+
+        &:nth-child(2) {
+          order: unset;
+          @include transform(scale(.8));
+        }
+
+        &:last-child {
+          order: unset;
+          top: unset;
+
+        }
+      }
+    }
 
     &.menu-hide {
       @include transform(translateY(-50%) !important);
@@ -72,6 +111,18 @@ nav {
         &.siteTitle {
           font-size: $textH3;
           margin: 0 25px;
+
+          @include breakpoint-tablet-por {
+            font-size: $textBig;
+          }
+
+          @include breakpoint-mobile {
+            font-size: $textBig;
+          }
+          @include breakpoint-mobile-land {
+            font-size: $textNormal;
+            margin: unset;
+          }
         }
 
         &.braces {
@@ -110,15 +161,26 @@ nav {
     position: relative;
     left: -25px;
 
+    @include breakpoint-mobile {
+      flex-flow: column nowrap;
+      @include position(70px, 10px);
+    }
+    @include breakpoint-mobile-land {
+      flex-flow: row wrap;
+      @include position(30px, unset);
+    }
+
     .item:nth-child(2) {
       position: relative;
       top: 5vh;
+
+      @include breakpoint-mobile {
+        top: unset;
+      }
     }
 
     .item {
       position: relative;
-
-
     }
 
     .item, &.item i {
@@ -148,6 +210,16 @@ nav {
         outline: none;
         @include no-select;
         @include transition(all .3s ease-out);
+        @include breakpoint-mobile {
+          font-size: $textBig;
+          i {
+            @include opacity(1);
+            @include transform(translateX(0%) !important);
+          }
+        }
+        @include breakpoint-mobile-land {
+          font-size: $textNormal;
+        }
 
         &.hidden {
           @include opacity(0);
@@ -175,6 +247,9 @@ nav {
           @include position(120%, 10%);
           @include transform(rotateX(-80deg) translateY(-220%) rotateY(-1deg) scale(1));
           @include transition(all .3s ease);
+          @include breakpoint-mobile {
+            display: none;
+          }
         }
 
         &:focus {
@@ -207,6 +282,9 @@ nav {
       @include opacity(0);
       @include transform(translateX(100%));
       @include transition(all .2s ease-in);
+      @include breakpoint-mobile-land {
+        font-size: $textH3;
+      }
     }
 
     .item span {
@@ -218,6 +296,9 @@ nav {
       color: $theme-blue;
       position: relative;
       top: 2px;
+      @include breakpoint-mobile-land {
+        font-size: $textH3;
+      }
     }
 
   }
