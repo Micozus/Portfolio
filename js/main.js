@@ -8,6 +8,7 @@ var sectionsArea = document.querySelector('main');
 var navArea = document.querySelector('nav');
 var sectionEntries = document.querySelectorAll('.sectionEntry');
 var sectionNavigateButton = document.querySelector('.sectionNavigate');
+var contactPopup = document.querySelector('#contactForm');
 var selectedView;
 canvas.width = 150;
 canvas.height = 150;
@@ -199,6 +200,9 @@ function onBackToMenu() {
     stopCanvas();
     mainMenuInit();
     startCanvas();
+}
+function togglePopup() {
+    contactPopup.classList.contains('shown') ? contactPopup.classList.remove('shown') : contactPopup.classList.add('shown');
 }
 window.onload = function () {
     mainMenuInit();

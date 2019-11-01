@@ -8,6 +8,7 @@ const sectionsArea = document.querySelector('main');
 const navArea = document.querySelector('nav');
 const sectionEntries = document.querySelectorAll('.sectionEntry');
 const sectionNavigateButton = document.querySelector('.sectionNavigate');
+const contactPopup = document.querySelector('#contactForm');
 
 let selectedView: string;
 
@@ -270,6 +271,11 @@ function onBackToMenu() {
   stopCanvas();
   mainMenuInit();
   startCanvas();
+}
+
+function togglePopup() {
+  contactPopup.classList.contains('shown') ? contactPopup.classList.remove('shown') : contactPopup.classList.add('shown');
+
 }
 
 window.onload = () => {

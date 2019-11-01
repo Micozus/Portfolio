@@ -22,8 +22,10 @@ footer {
       font-size: $textBig;
       color: $theme-light;
       cursor: pointer;
-      @include box-shadow(0, 0, 10px, $theme-dark);
+      outline: 0;
+      border-radius: 5px;
       @include no-select;
+      @include box-shadow(0, 0, 10px, $theme-dark);
       @include gradient($theme-dark, $theme-purple-dark, vertical);
       @include transition(all .3s ease-in-out);
       @include transform(translateY(0%));
@@ -44,12 +46,14 @@ footer {
       }
 
       &:hover {
+        @include box-shadow-inset(0, 0, 15px, $theme-gray-darker);
         @include gradient($theme-darker, $theme-purple-dark, vertical);
         @include box-shadow(0, 0, 10px, $theme-darker);
         @include transform(translateY(-20%));
       }
 
       &:active, &:focus {
+        @include box-shadow-inset(0, 0, 15px, $theme-gray-darker);
         @include gradient($theme-purple-accent, $theme-purple-dark, vertical);
         @include transform(translateY(-20%));
       }
