@@ -99,54 +99,28 @@ b, strong {
       @include box(90%, auto);
     }
 
+    .messageText {
+      padding: 15px;
 
-    form {
-      display: flex;
-      flex-flow: column nowrap;
-      width: 90%;
-      margin: 20px auto;
+      .profiles {
+        display: flex;
+        flex-flow: row nowrap;
+        margin: 10px 0;
 
-      input, textarea {
-        padding: 5px;
-        margin-bottom: 5px;
-        border-radius: 5px;
-        border: $theme-dark solid 2px;
-        color: $theme-light;
-        max-width: 100%;
-        outline: 0;
-        @include transition(all .3s ease);
-        @include gradient($theme-dark, $theme-purple-dark, vertical);
+        button {
+          border: none;
+          background: none;
+          cursor: pointer;
 
-        &:hover, &:focus, &:active {
-          border: $theme-purple solid 2px;
-          @include box-shadow-inset(0, 0, 15px, $theme-purple);
+          img {
+            width: 30px;
+            height: 30px;
+            @include filter(invert(1));
+          }
         }
       }
-
-      label {
-        margin-bottom: 3px;
-        font-size: $textNormal;
-      }
-
-      input[type="submit"] {
-        border: 0;
-        width: 100px;
-        padding: 10px;
-        margin: 10px auto 0 auto;
-        cursor: pointer;
-        @include gradient($theme-purple-accent, $theme-purple, vertical);
-        @include box-shadow-inset(0, 0, 15px, $theme-gray-darker);
-        @include transition(all 0s ease);
-
-        &:hover, &:focus, &:active {
-          border: unset;
-
-          @include box-shadow(0, 0, 10px, $theme-gray-darker);
-          @include gradient($theme-dark, $theme-purple, vertical);
-        }
-      }
-
     }
+
 
     .exit {
       position: absolute;

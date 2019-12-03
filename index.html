@@ -29,15 +29,16 @@
         close
       </i>
     </div>
-    <form action="">
-      <label for="name">Imię Nazwisko</label>
-      <input id="name" type="text" name="name">
-      <label for="email">Adres E-mail:</label>
-      <input id="email" type="email" name="mail">
-      <label for="message">Treść wiadomości:</label>
-      <textarea id="message" rows="4" cols="30"></textarea>
-      <input type="submit" value="Wyślij">
-    </form>
+    <div>
+    </div>
+    <div class="messageText">Sprawdź moje konto na:
+      <div class="profiles">
+        <button onclick="window.open('https://www.linkedin.com/in/pawel-mikos/', '_blank')"><img
+          src="assets/ico/lnk.svg" title="linkedin.com/in/pawel-mikos/"/></button>
+        <button onclick="window.open('https://github.com/Micozus', '_blank')"><img
+          src="assets/ico/gh.svg" title="github.com/Micozus"/></button>
+      </div>
+    </div>
   </div>
   <div class="bgHorizon hidden">
     <div></div>
@@ -167,6 +168,7 @@
                     przy realizacji projektów:
                   </p>
                   <div class="iconsBox">
+                    <img src="./assets/ico/wordpress.svg" alt="Wordpress" title="Wordpress"/>
                     <img src="./assets/ico/sass.svg" alt="Sass" title="Sass"/>
                     <img src="./assets/ico/adobexd.svg" alt="AdobeXD" title="AdobeXD"/>
                     <img src="./assets/ico/js.svg" alt="Javascript / Ecmascript" title="Javascript / Ecmascript"/>
@@ -343,13 +345,14 @@
   </main>
   <footer>
     <div id="footerContactCta">
-      <div tabindex="9" class="item hidden"><i class="material-icons">
+      <div onclick="window.open('assets/pdf/pm-cv.pdf', '_blank')" tabindex="9" class="item hidden"><i
+        class="material-icons">
         assignment_ind
       </i> Zobacz CV
       </div>
       <div onclick="togglePopup()" tabindex="10" class="item hidden"><i class="material-icons">
-        question_answer
-      </i> Skontaktuj się
+        web
+      </i> Moje profile
       </div>
     </div>
   </footer>
